@@ -1,30 +1,26 @@
-package com.lete.land.landdal.vo;
+package com.lete.land.landdal.vo.excelModel;
 
 import com.alibaba.excel.annotation.ExcelProperty;
 import com.alibaba.excel.metadata.BaseRowModel;
 
-public class DataConLandInformationModel extends BaseRowModel {
+public class DataCrInformationModel extends BaseRowModel {
     @ExcelProperty(value = "序号",index = 0)
     private String id;
     @ExcelProperty(value = "镇编号",index = 1)
     private String townId;
-    @ExcelProperty(value = "地籍编号",index = 2)
-    private String cadastralNum;
+    @ExcelProperty(value = "户籍编号",index = 2)
+    private String hrNum;
     @ExcelProperty(value = "户主姓名",index = 3)
     private String hrName;
-    @ExcelProperty(value = "身份证号",index = 4)
+    @ExcelProperty(value = "身份证号码",index = 4)
     private String idCard;
-    @ExcelProperty(value = "家庭人口数",index = 5)
-    private Integer familyNum;
-    @ExcelProperty(value = "承包地数量",index = 6)
-    private Integer conLandNum;
-    @ExcelProperty(value = "是否退地",index = 7)
-    private Boolean isBackground;
-    @ExcelProperty(value = "所在镇",index = 8)
+    @ExcelProperty(value = "所在镇",index = 5)
     private String town;
-    @ExcelProperty(value = "所在村",index = 9)
+    @ExcelProperty(value = "所在村",index = 6)
     private String village;
-    @ExcelProperty(value = "统计年份",index = 9)
+    @ExcelProperty(value = "特色田园村庄农户",index = 7)
+    private Boolean isSpecial;
+    @ExcelProperty(value = "统计年份",index = 8)
     private String year;
 
     public String getTownId() {
@@ -43,12 +39,12 @@ public class DataConLandInformationModel extends BaseRowModel {
         this.id = id;
     }
 
-    public String getCadastralNum() {
-        return cadastralNum;
+    public String getHrNum() {
+        return hrNum;
     }
 
-    public void setCadastralNum(String cadastralNum) {
-        this.cadastralNum = cadastralNum;
+    public void setHrNum(String hrNum) {
+        this.hrNum = hrNum;
     }
 
     public String getHrName() {
@@ -67,30 +63,6 @@ public class DataConLandInformationModel extends BaseRowModel {
         this.idCard = idCard;
     }
 
-    public Integer getFamilyNum() {
-        return familyNum;
-    }
-
-    public void setFamilyNum(Integer familyNum) {
-        this.familyNum = familyNum;
-    }
-
-    public Integer getConLandNum() {
-        return conLandNum;
-    }
-
-    public void setConLandNum(Integer conLandNum) {
-        this.conLandNum = conLandNum;
-    }
-
-    public Boolean getBackground() {
-        return isBackground;
-    }
-
-    public void setBackground(Boolean background) {
-        isBackground = background;
-    }
-
     public String getTown() {
         return town;
     }
@@ -105,6 +77,14 @@ public class DataConLandInformationModel extends BaseRowModel {
 
     public void setVillage(String village) {
         this.village = village;
+    }
+
+    public Boolean getSpecial() {
+        return isSpecial;
+    }
+
+    public void setSpecial(Boolean special) {
+        isSpecial = special;
     }
 
     public String getYear() {

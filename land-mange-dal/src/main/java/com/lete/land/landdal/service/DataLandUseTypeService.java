@@ -46,10 +46,7 @@ public class DataLandUseTypeService {
         },pageable);
     }
 
-    public Result save() {
-        DataLandUseType dataLandUseType = new DataLandUseType();
-        dataLandUseType.setTown("什么镇");
-        dataLandUseType.setAqArea(new Double(200));
+    public Result save(DataLandUseType dataLandUseType) {
         try{
             dataLandUseRepository.save(dataLandUseType);
             return ResultFactory.buildSuccessResult("保存成功");

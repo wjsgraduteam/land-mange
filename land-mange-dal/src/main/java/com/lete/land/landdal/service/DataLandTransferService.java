@@ -1,11 +1,9 @@
 package com.lete.land.landdal.service;
 
 import com.lete.land.landdal.Result;
-import com.lete.land.landdal.entity.DataIncomeAndDistributionInformation;
 import com.lete.land.landdal.entity.DataLandTransfer;
 import com.lete.land.landdal.repository.DataLandTransferRepository;
-import com.lete.land.landdal.vo.DataIncomeAndDistributionInformationModel;
-import com.lete.land.landdal.vo.DataLandTransferModel;
+import com.lete.land.landdal.vo.excelModel.DataLandTransferModel;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
