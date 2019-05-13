@@ -68,7 +68,6 @@ public class DataRegPopulationService {
         dataRegPopulationRepository.saveAll(list);
     }
 
-
     public Page<DataRegPopulation> getRegPopulationPage(String townId,String year,Pageable pageable) {
         return dataRegPopulationRepository.findAll((Specification<DataRegPopulation>) (root, criteriaQuery, criteriaBuilder) -> {
             List<Predicate> predicates = new LinkedList<>();
@@ -100,4 +99,5 @@ public class DataRegPopulationService {
             return ResultFactory.buildFailResult("保存失败");
         }
     }
+
 }

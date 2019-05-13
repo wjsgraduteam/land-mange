@@ -34,8 +34,8 @@ public class DataLandUseTypeEndpoint {
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
-    public Result save() {
-        return dataLandUseTypeService.save();
+    public Result save(@RequestBody DataLandUseType dataLandUseType) {
+        return dataLandUseTypeService.save(dataLandUseType);
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
@@ -50,16 +50,6 @@ public class DataLandUseTypeEndpoint {
                                  @RequestParam(value = "year",required = false)String year,
                                  @RequestParam(value = "indicators",required = false)String indicators) {
         return dataLandUseTypeService.analysisLandType(townId,year,indicators);
-    }
-
-    @RequestMapping(value = "/pagetrdt", method = RequestMethod.GET)
-    @ResponseBody
-    public Page<DataLandUseType> pagetrdt(
-            @RequestParam(value = "townId",required = false)String townId,
-            @RequestParam(value = "village",required = false)String village,
-            @RequestParam(value = "year",required = false)String year,
-            @PageableDefault Pageable pageable) {
-        return dataLandUseTypeService.getLandUseTypePage(townId,village,year,pageable);
     }
 
 }

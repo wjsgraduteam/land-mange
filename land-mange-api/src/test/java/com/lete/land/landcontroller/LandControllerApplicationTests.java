@@ -42,6 +42,8 @@ public class LandControllerApplicationTests {
     @Resource
     private DataRegPopulationService dataRegPopulationService;
 
+    @Resource
+    private DataBusinessEntityInformationRepository dataBusinessEntityInformationRepository;
     @Test
     public void contextLoads() {
 
@@ -71,5 +73,9 @@ public class LandControllerApplicationTests {
     @Test
     public void alterColumnTest() {
     }
-
+   @Test
+    public void businessTest(){
+        List<TemplateVo> voList = dataBusinessEntityInformationRepository.findTemplateVo();
+       System.out.println(voList.get(0).getIdCard());
+   }
 }

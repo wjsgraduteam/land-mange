@@ -6,21 +6,22 @@ import com.alibaba.excel.metadata.Sheet;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.lete.land.landdal.Result;
-import com.lete.land.landdal.entity.*;
+import com.lete.land.landdal.entity.DataTemplate;
+import com.lete.land.landdal.entity.DataTemplateDeatil;
 import com.lete.land.landdal.repository.DataTemplateDetailRepository;
 import com.lete.land.landdal.repository.DataTemplateRepository;
 import com.lete.land.landdal.repository.SysTownRepository;
 import com.lete.land.landdal.util.ExcelException;
 import com.lete.land.landdal.util.ExcelListener;
+import com.lete.land.landdal.vo.*;
+import com.lete.land.landdal.vo.dataCenter.*;
 import com.lete.land.landdal.vo.excelModel.DataLandUseTypeModel;
 import com.lete.land.landdal.vo.excelModel.DataRegPopulationModel;
-import com.lete.land.landdal.vo.dataCenter.*;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
@@ -51,9 +52,23 @@ public class DataTemplateService {
     @Resource
     private DataLandUseTypeService dataLandUseTypeService;
 
+    @Resource
+    private DataBusinessEntityInformationService dataBusinessEntityInformationService;
 
+    @Resource
+    private DataConLandInformationService dataConLandInformationService;
 
+    @Resource
+    private DataCrInformationService dataCrInformationService;
 
+    @Resource
+    private DataHolderInformationService dataHolderInformationService;
+
+    @Resource
+    private DataIncomeAndDistributionInformationService dataIncomeAndDistributionInformationService;
+
+    @Resource
+    private DataLandTransferService dataLandTransferService;
     public List<DataTemplateVo> getTemplateJson() {
         List<Object[]> objects = dataTemplateRepository.findTemplateCommentsByTableName("d_land_use_type");
         List<DataTemplateVo> list = new ArrayList<>();
@@ -66,6 +81,7 @@ public class DataTemplateService {
 
         return list;
     }
+
     //获取模板表的分页数据
     public Page<DataTemplate> getTemplatePage(String templateName, Pageable pageable) {
         Specification<DataTemplate> specification = new Specification<DataTemplate>() {
@@ -171,9 +187,25 @@ public class DataTemplateService {
             }else if(templateId.equals("2")) {
                 List<Object> data = readExcel(excel,new DataLandUseTypeModel());
                 dataLandUseTypeService.transferAndSave(data,year,townId);
-            }else if(templateId.equals("3")) {
-
-
+            }else if (templateId.equals("3")){
+                List<Object> data = readExcel(excel,new DataBusinessEntityInformationModel() );
+                dataBusinessEntityInformationService.transferAndSave(data,year,townId);
+            }else if (templateId.equals("4")){
+                List<Object> data = readExcel(excel,new DataConLandInformationModel());
+                dataConLandInformationService.transferAndSave(data,year,townId);
+            }else if (templateId.equals("5")){
+                List<Object> data = readExcel(excel,new DataCrInformationModel());
+                dataCrInformationService.transferAndSave(data,year,townId);
+            }else if (templateId.equals("6")){
+                List<Object> data = readExcel(excel,new DataHolderInformationModel());
+                dataHolderInformationService.transferAndSave(data,year,townId);
+            }else if (templateId.equals("7")){
+                List<Object> data = readExcel(excel,new DataIncomeAndDistributionInformationModel());
+                dataIncomeAndDistributionInformationService.transferAndSave(data,year,townId);
+            }
+            else if (templateId.equals("8")){
+                List<Object> data = readExcel(excel,new DataIncomeAndDistributionInformationModel());
+                dataLandTransferService.transferAndSave(data,year,townId);
             }
 
             DataTemplateDeatil  dataTemplateDeatil = dataTemplateDetailRepository.findByTemplateIdAndYearAndTownId(templateId,year,townId);
@@ -184,7 +216,6 @@ public class DataTemplateService {
             System.out.println(e);
             return ResultFactory.buildFailResult("导入失败");
         }
-
 
 
     }
