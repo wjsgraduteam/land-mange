@@ -15,7 +15,6 @@ import com.lete.land.landdal.util.ExcelException;
 import com.lete.land.landdal.util.ExcelListener;
 import com.lete.land.landdal.vo.dataCenter.*;
 import com.lete.land.landdal.vo.excelModel.*;
-import com.lete.land.landdal.vo.excelModel.DataLandUseTypeModel;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -68,6 +67,7 @@ public class DataTemplateService {
 
     @Resource
     private DataLandTransferService dataLandTransferService;
+
     public List<DataTemplateVo> getTemplateJson() {
         List<Object[]> objects = dataTemplateRepository.findTemplateCommentsByTableName("d_land_use_type");
         List<DataTemplateVo> list = new ArrayList<>();
@@ -125,13 +125,13 @@ public class DataTemplateService {
     }
 
     //获取模板表的分页数据-不同的镇只能看到自己的
-    public Page<DataImportVo> getTemplateDetailPage(String townId,String year,Pageable pageable) {
-        generateTemplateDetail(townId,year); // 生成细节表 只生成一次
+    public Page<DataImportVo> getTemplateDetailPage(String townId, String year, Pageable pageable) {
+        generateTemplateDetail(townId, year); // 生成细节表 只生成一次
         Page<DataImportVo> page;
         if (year == null || year == "") {
-            page  = dataTemplateDetailRepository.findTemplateDetailPageByTownId(townId, pageable);
+            page = dataTemplateDetailRepository.findTemplateDetailPageByTownId(townId, pageable);
         } else {
-            page  = dataTemplateDetailRepository.findTemplateDetailPageByTownId(townId,year,pageable);
+            page = dataTemplateDetailRepository.findTemplateDetailPageByTownId(townId, year, pageable);
         }
 
 
@@ -142,15 +142,15 @@ public class DataTemplateService {
         return page;
     }
 
-    public void generateTemplateDetail(String townId,String year) {
+    public void generateTemplateDetail(String townId, String year) {
         // 数据库查询该年份的细节表
         List<DataTemplate> dataTemplate = dataTemplateRepository.findAll();
         List<DataTemplateDeatil> dataTemplateDeatils;
-        if(year == "" || year == null) {
+        if (year == "" || year == null) {
             year = String.valueOf(LocalDate.now().getYear());
-            dataTemplateDeatils = dataTemplateDetailRepository.findByYearAndTownId(year,townId); // 默认查询当前年份
+            dataTemplateDeatils = dataTemplateDetailRepository.findByYearAndTownId(year, townId); // 默认查询当前年份
         } else {
-            dataTemplateDeatils =  dataTemplateDetailRepository.findByYearAndTownId(year,townId); // 默认查询当前年份
+            dataTemplateDeatils = dataTemplateDetailRepository.findByYearAndTownId(year, townId); // 默认查询当前年份
         }
         final String saveYear = year;
         if (dataTemplateDeatils.size() != dataTemplate.size()) {
@@ -177,47 +177,53 @@ public class DataTemplateService {
         return "未开始";
     }
 
-    public Result importExcel(MultipartFile excel,String templateId,String year,String townId) {
+    public Result importExcel(MultipartFile excel, String templateId, String year, String townId) {
         try {
-            if(templateId.equals("1")) { //
-                List<Object> data = readExcel(excel,new DataRegPopulationModel());
-                dataRegPopulationService.transferAndSave(data,year,townId);
-
-            }else if(templateId.equals("2")) {
-                List<Object> data = readExcel(excel,new DataLandUseTypeModel());
-                dataLandUseTypeService.transferAndSave(data,year,townId);
-            }else if (templateId.equals("3")){
-                List<Object> data = readExcel(excel,new DataBusinessEntityInformationModel() );
-                dataBusinessEntityInformationService.transferAndSave(data,year,townId);
-            }else if (templateId.equals("4")){
-                List<Object> data = readExcel(excel,new DataConLandInformationModel());
-                dataConLandInformationService.transferAndSave(data,year,townId);
-            }else if (templateId.equals("5")){
-                List<Object> data = readExcel(excel,new DataCrInformationModel());
-                dataCrInformationService.transferAndSave(data,year,townId);
-            }else if (templateId.equals("6")){
-                List<Object> data = readExcel(excel,new DataHolderInformationModel());
-                dataHolderInformationService.transferAndSave(data,year,townId);
-            }else if (templateId.equals("7")){
-                List<Object> data = readExcel(excel,new DataIncomeAndDistributionInformationModel());
-                dataIncomeAndDistributionInformationService.transferAndSave(data,year,townId);
+            if (templateId.equals("1")) { //
+                List<Object> data = readExcel(excel, new DataRegPopulationModel());
+                dataRegPopulationService.transferAndSave(data, year, townId);
+            } else if (templateId.equals("2")) {
+                List<Object> data = readExcel(excel, new DataLandUseTypeModel());
+                dataLandUseTypeService.transferAndSave(data, year, townId);
+            } else if (templateId.equals("3")) {
+                List<Object> data = readExcel(excel, new DataBusinessEntityInformationModel());
+                dataBusinessEntityInformationService.transferAndSave(data, year, townId);
+            } else if (templateId.equals("4")) {
+                List<Object> data = readExcel(excel, new DataConLandInformationModel());
+                dataConLandInformationService.transferAndSave(data, year, townId);
+            } else if (templateId.equals("5")) {
+                List<Object> data = readExcel(excel, new DataCrInformationModel());
+                dataCrInformationService.transferAndSave(data, year, townId);
+            } else if (templateId.equals("6")) {
+                List<Object> data = readExcel(excel, new DataHolderInformationModel());
+                dataHolderInformationService.transferAndSave(data, year, townId);
+            } else if (templateId.equals("7")) {
+                List<Object> data = readExcel(excel, new DataIncomeAndDistributionInformationModel());
+                dataIncomeAndDistributionInformationService.transferAndSave(data, year, townId);
+            } else if (templateId.equals("8")) {
+                List<Object> data = readExcel(excel, new DataIncomeAndDistributionInformationModel());
+                dataLandTransferService.transferAndSave(data, year, townId);
+            } else if (templateId.equals("9")) {
+                List<Object> data = readExcel(excel, new DataIncomeAndDistributionInformationModel());
+                dataLandTransferService.transferAndSave(data, year, townId);
+            } else if (templateId.equals("10")) {
+                List<Object> data = readExcel(excel, new DataIncomeAndDistributionInformationModel());
+                dataLandTransferService.transferAndSave(data, year, townId);
+            } else if (templateId.equals("11")) {
+                List<Object> data = readExcel(excel, new DataIncomeAndDistributionInformationModel());
+                dataLandTransferService.transferAndSave(data, year, townId);
             }
-            else if (templateId.equals("8")){
-                List<Object> data = readExcel(excel,new DataIncomeAndDistributionInformationModel());
-                dataLandTransferService.transferAndSave(data,year,townId);
-            }
 
-            DataTemplateDeatil  dataTemplateDeatil = dataTemplateDetailRepository.findByTemplateIdAndYearAndTownId(templateId,year,townId);
+            DataTemplateDeatil dataTemplateDeatil = dataTemplateDetailRepository.findByTemplateIdAndYearAndTownId(templateId, year, townId);
             dataTemplateDeatil.setStatus(DataImporStatusEnum.STA.getIndex()); // 设置已经提交
             dataTemplateDetailRepository.save(dataTemplateDeatil);
             return ResultFactory.buildSuccessResult("导入成功");
-        }catch (Exception e) {
+        } catch (Exception e) {
             System.out.println(e);
             return ResultFactory.buildFailResult("导入失败");
         }
-
-
     }
+
     // 根据templateId来选择模板
     public List<Object> readExcel(MultipartFile excel, BaseRowModel rowModel) {
         ExcelListener excelListener = new ExcelListener();
@@ -236,8 +242,8 @@ public class DataTemplateService {
         return excelListener.getDatas();
     }
 
-    public  ExcelReader getReader(MultipartFile excel,
-                                  ExcelListener excelListener) {
+    public ExcelReader getReader(MultipartFile excel,
+                                 ExcelListener excelListener) {
         String filename = excel.getOriginalFilename();
         if (filename == null || (!filename.toLowerCase().endsWith(".xls") && !filename.toLowerCase().endsWith(".xlsx"))) {
             throw new ExcelException("文件格式错误！");
@@ -254,27 +260,28 @@ public class DataTemplateService {
 
     // 区用户查看所有模板表
     public Page<DataTemplateDeatil> getTemplateAuditPage(TemplateSearchVo seach, Pageable pageable) {
-        return dataTemplateDetailRepository.findAll((Specification<DataTemplateDeatil>) (root,criteriaQuery,criteriaBuilder) -> {
-                List<Predicate> predicates = new LinkedList<>();
-                Optional<TemplateSearchVo> optional = Optional.ofNullable(seach);
-                optional.filter(searchVo -> seach.getYear() != "").map(TemplateSearchVo::getYear).ifPresent(year -> {
-                    predicates.add(criteriaBuilder.equal(root.get("year"),year));
-                });
-                optional.filter(searchVo -> seach.getTown() != "").map(TemplateSearchVo::getTown).ifPresent(town -> {
-                    predicates.add(criteriaBuilder.like(root.get("townName"),"%" + town + "%"));
-                });
-                Predicate[] array = new Predicate[predicates.size()];
-                criteriaQuery.orderBy(criteriaBuilder.desc(root.get("townName")));
-                return criteriaBuilder.and(predicates.toArray(array));
-            },pageable);
+        return dataTemplateDetailRepository.findAll((Specification<DataTemplateDeatil>) (root, criteriaQuery, criteriaBuilder) -> {
+            List<Predicate> predicates = new LinkedList<>();
+            Optional<TemplateSearchVo> optional = Optional.ofNullable(seach);
+            optional.filter(searchVo -> seach.getYear() != "").map(TemplateSearchVo::getYear).ifPresent(year -> {
+                predicates.add(criteriaBuilder.equal(root.get("year"), year));
+            });
+            optional.filter(searchVo -> seach.getTown() != "").map(TemplateSearchVo::getTown).ifPresent(town -> {
+                predicates.add(criteriaBuilder.like(root.get("townName"), "%" + town + "%"));
+            });
+            Predicate[] array = new Predicate[predicates.size()];
+            criteriaQuery.orderBy(criteriaBuilder.desc(root.get("townName")));
+            return criteriaBuilder.and(predicates.toArray(array));
+        }, pageable);
     }
+
     // 审核变更模板表状态
     public Result auditTemplate(DataAuditRequestVo auditRequestVo) {
-        DataTemplateDeatil dataTemplateDeatil = dataTemplateDetailRepository.findByTemplateIdAndYearAndTownId(auditRequestVo.getTemplateId(),auditRequestVo.getYear(),auditRequestVo.getTownId());
+        DataTemplateDeatil dataTemplateDeatil = dataTemplateDetailRepository.findByTemplateIdAndYearAndTownId(auditRequestVo.getTemplateId(), auditRequestVo.getYear(), auditRequestVo.getTownId());
         try {
             dataTemplateDeatil.setStatus(Integer.valueOf(auditRequestVo.getStatus()));
             dataTemplateDetailRepository.save(dataTemplateDeatil);
-        }catch (NullPointerException e) {
+        } catch (NullPointerException e) {
             System.out.println("数据不存在");
             return ResultFactory.buildFailResult("数据不存在");
         }
