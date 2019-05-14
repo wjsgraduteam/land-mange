@@ -3,7 +3,7 @@ package com.lete.land.landdal.vo.excelModel;
 import com.alibaba.excel.annotation.ExcelProperty;
 import com.alibaba.excel.metadata.BaseRowModel;
 
-public class DataPopulationStatusModel extends BaseRowModel {
+public class DataPopulationStatusModel extends BaseRowModel  {
     @ExcelProperty(value = "序号",index = 0)
     private String id;
     @ExcelProperty(value = "镇编号",index = 1)
