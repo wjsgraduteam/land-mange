@@ -1,15 +1,16 @@
 package com.lete.land.landdal.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "d_land_transfer")
+@GenericGenerator(name = "jpa-uuid", strategy = "uuid")
 public class DataLandTransfer {
     @Id
     @Column(name = "id")
+    @GeneratedValue(generator = "jpa-uuid")
     private String id;
     @Column(name = "town_id")
     private String townId;
@@ -30,20 +31,20 @@ public class DataLandTransfer {
     @Column(name = "latoe")
     private Double latoe;
 
-    public String getTownId() {
-        return townId;
-    }
-
-    public void setTownId(String townId) {
-        this.townId = townId;
-    }
-
     public String getId() {
         return id;
     }
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getTownId() {
+        return townId;
+    }
+
+    public void setTownId(String townId) {
+        this.townId = townId;
     }
 
     public String getTown() {

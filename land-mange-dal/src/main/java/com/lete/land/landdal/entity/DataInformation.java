@@ -1,18 +1,18 @@
 package com.lete.land.landdal.entity;
 
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Table(name = "d_information")
+@GenericGenerator(name = "jpa-uuid", strategy = "uuid")
 public class DataInformation {
     @Id
     @Column(name = "id")
+    @GeneratedValue(generator = "jpa-uuid")
     private String id;
     @Column(name = "name")
     private String name;

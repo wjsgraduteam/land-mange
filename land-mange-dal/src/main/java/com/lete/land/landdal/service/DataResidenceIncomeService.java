@@ -1,9 +1,9 @@
 package com.lete.land.landdal.service;
 
 import com.lete.land.landdal.Result;
-import com.lete.land.landdal.entity.DataLandTransfer;
-import com.lete.land.landdal.repository.DataLandTransferRepository;
-import com.lete.land.landdal.vo.excelModel.DataLandTransferModel;
+import com.lete.land.landdal.entity.DataResidenceIncome;
+import com.lete.land.landdal.repository.DataResidenceIncomeRepository;
+import com.lete.land.landdal.vo.excelModel.DataResidenceIncomeModel;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,12 +17,12 @@ import java.util.LinkedList;
 import java.util.List;
 
 @Service
-public class DataLandTransferService {
+public class DataResidenceIncomeService {
     @Resource
-    private DataLandTransferRepository dataLandTransferRepository;
+    private DataResidenceIncomeRepository dataResidenceIncomeRepository;
 
-    public Page<DataLandTransfer> getDataLandTransferPage(String townId, String village, String year, Pageable pageable) {
-        return dataLandTransferRepository.findAll((Specification<DataLandTransfer>) (root, criteriaQuery, criteriaBuilder) -> {
+    public Page<DataResidenceIncome> getDataResidenceIncomePage(String townId, String village, String year, Pageable pageable) {
+        return dataResidenceIncomeRepository.findAll((Specification<DataResidenceIncome>) (root, criteriaQuery, criteriaBuilder) -> {
             List<Predicate> predicates = new LinkedList<>();
 
             if (!StringUtils.isEmpty(year)) {
@@ -40,10 +40,9 @@ public class DataLandTransferService {
 
     }
 
-    public Result save(DataLandTransfer dataLandTransfer) {
-
+    public Result save(DataResidenceIncome dataResidenceIncome) {
         try {
-            dataLandTransferRepository.save(dataLandTransfer);
+            dataResidenceIncomeRepository.save(dataResidenceIncome);
             return ResultFactory.buildSuccessResult("保存成功");
         } catch (Exception e) {
             return ResultFactory.buildFailResult("保存失败");
@@ -53,7 +52,7 @@ public class DataLandTransferService {
 
     public Result delete(String id) {
         try {
-            dataLandTransferRepository.deleteById(id);
+            dataResidenceIncomeRepository.deleteById(id);
             return ResultFactory.buildSuccessResult("保存成功");
         } catch (Exception e) {
             return ResultFactory.buildFailResult("保存失败");
@@ -61,22 +60,21 @@ public class DataLandTransferService {
     }
 
     public void transferAndSave(List<Object> modelList, String year, String townId) {
-        List<DataLandTransfer> list = new ArrayList<>();
+        List<DataResidenceIncome> list = new ArrayList<>();
         for (Object obj : modelList) {
-            DataLandTransfer dataLandTransfer = new DataLandTransfer();
-            DataLandTransferModel model = (DataLandTransferModel) obj;
-            dataLandTransfer.setId(model.getId());
-            dataLandTransfer.setTownId(model.getTownId());
-            dataLandTransfer.setTown(model.getTown());
-            dataLandTransfer.setVillage(model.getVillage());
-            dataLandTransfer.setAlat(model.getAlat());
-            dataLandTransfer.setLatfc(model.getLatfc());
-            dataLandTransfer.setLate(model.getLate());
-            dataLandTransfer.setLatlh(model.getLatlh());
-            dataLandTransfer.setLatoe(model.getLatoe());
-            dataLandTransfer.setYear(model.getYear());
+            DataResidenceIncome dataResidenceIncome = new DataResidenceIncome();
+            DataResidenceIncomeModel model = (DataResidenceIncomeModel) obj;
+            dataResidenceIncome.setId(model.getId());
+            dataResidenceIncome.setTownId(model.getTownId());
+            dataResidenceIncome.setVillage(model.getVillage());
+            dataResidenceIncome.setTown(model.getTown());
+            dataResidenceIncome.setVillageCollectiveIncome(model.getVillageCollectiveIncome());
+            dataResidenceIncome.setToalIncome(model.getToalIncome());
+            dataResidenceIncome.setCanUseIncome(model.getCanUseIncome());
+            dataResidenceIncome.setDividend(model.getDividend());
+            dataResidenceIncome.setYear(model.getYear());
 
-            dataLandTransferRepository.saveAll(list);
+            dataResidenceIncomeRepository.saveAll(list);
         }
     }
 }

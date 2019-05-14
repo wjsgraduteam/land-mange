@@ -1,16 +1,16 @@
 package com.lete.land.landdal.entity;
 
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "d_business_entity_information")
+@GenericGenerator(name = "jpa-uuid", strategy = "uuid")
 public class DataBusinessEntityInformation {
     @Id
+    @GeneratedValue(generator = "jpa-uuid")
     @Column(name = "id")
     private String id;
     @Column(name = "town_id")
@@ -22,7 +22,7 @@ public class DataBusinessEntityInformation {
     @Column(name = "village")
     private String village;
     @Column(name = "contracted_area")
-    private Integer contractedArea;
+    private Double contractedArea;
     @Column(name = "operator_name")
     private String operatorName;
     @Column(name = "id_card")
@@ -77,11 +77,11 @@ public class DataBusinessEntityInformation {
         this.village = village;
     }
 
-    public Integer getContractedArea() {
+    public Double getContractedArea() {
         return contractedArea;
     }
 
-    public void setContractedArea(Integer contractedArea) {
+    public void setContractedArea(Double contractedArea) {
         this.contractedArea = contractedArea;
     }
 

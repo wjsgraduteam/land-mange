@@ -2,15 +2,16 @@ package com.lete.land.landdal.entity;
 
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "d_cr_information")
+@GenericGenerator(name = "jpa-uuid", strategy = "uuid")
 public class DataCrInformation {
     @Id
+    @GeneratedValue(generator = "jpa-uuid")
     @Column(name = "id")
      private String id;
     @Column(name = "town_id")

@@ -1,8 +1,8 @@
 package com.lete.land.landcontroller.endPoint;
 
 import com.lete.land.landdal.Result;
-import com.lete.land.landdal.entity.DataConLandInformation;
-import com.lete.land.landdal.service.DataConLandInformationService;
+import com.lete.land.landdal.entity.DataPopulationStatus;
+import com.lete.land.landdal.service.DataPopulationStatusService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -12,30 +12,30 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 
 @Controller
-@RequestMapping(value = "/api/data-conLand-information")
-public class DataConLandInformationEndpoint {
+@RequestMapping(value = "/api/population-status")
+public class DataPopulationStatusEndpoint {
     @Resource
-    private DataConLandInformationService dataConLandInformationService;
+    private DataPopulationStatusService dataPopulationStatusService;
 
     @RequestMapping(value = "/page", method = RequestMethod.GET)
     @ResponseBody
-    public Page<DataConLandInformation> getDataConLandInformationPage(
+    public Page<DataPopulationStatus> getDataPopulationStatusPage(
             @RequestParam(value = "townId", required = false) String townId,
             @RequestParam(value = "village", required = false) String village,
             @RequestParam(value = "year", required = false) String year,
             @PageableDefault Pageable pageable) {
-        return dataConLandInformationService.getDataConLandInformationPage(townId, village, year, pageable);
+        return dataPopulationStatusService.getDataPopulationStatusPage(townId, village, year, pageable);
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
-    public Result save(@RequestBody DataConLandInformation dataConLandInformation) {
-        return dataConLandInformationService.save(dataConLandInformation);
+    public Result savePopulation(@RequestBody DataPopulationStatus dataPopulationStatus) {
+        return dataPopulationStatusService.save(dataPopulationStatus);
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @ResponseBody
-    public Result deleteRegPopulation(@RequestParam(value = "id") String id) {
-        return dataConLandInformationService.delete(id);
+    public Result deletePopulation(@RequestParam(value = "id") String id) {
+        return dataPopulationStatusService.delete(id);
     }
 }

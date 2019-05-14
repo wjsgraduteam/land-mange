@@ -1,7 +1,6 @@
 package com.lete.land.landcontroller.endPoint;
 
 import com.lete.land.landdal.Result;
-import com.lete.land.landdal.entity.DataCrInformation;
 import com.lete.land.landdal.entity.DataHolderInformation;
 import com.lete.land.landdal.service.DataHolderInformationService;
 import org.springframework.data.domain.Page;
@@ -13,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 
 @Controller
-@RequestMapping(value = "api/holder-information")
+@RequestMapping(value = "/api/holder-information")
 public class DataHolderInformationEndpoint {
     @Resource
     private DataHolderInformationService dataHolderInformationService;

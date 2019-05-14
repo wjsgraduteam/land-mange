@@ -7,7 +7,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "d_land_use_type")
 @GenericGenerator(name = "jpa-uuid", strategy = "uuid")
-
 public class DataLandUseType {
     @Id
     @GeneratedValue(generator = "jpa-uuid")

@@ -68,8 +68,17 @@ public class DataTemplateService {
     @Resource
     private DataLandTransferService dataLandTransferService;
 
+    @Resource
+    private DataNetIncomeStatisticsService dataNetIncomeStatisticsService;
+
+    @Resource
+    private DataPopulationStatusService dataPopulationStatusService;
+
+    @Resource
+    private DataResidenceIncomeService dataResidenceIncomeService;
+
     public List<DataTemplateVo> getTemplateJson() {
-        List<Object[]> objects = dataTemplateRepository.findTemplateCommentsByTableName("d_land_use_type");
+        List<Object[]> objects = dataTemplateRepository.findTemplateCommentsByTableName("d_business_entity_information");
         List<DataTemplateVo> list = new ArrayList<>();
         objects.forEach(objects1 -> {
             DataTemplateVo dataTemplateVo = new DataTemplateVo();
@@ -201,17 +210,17 @@ public class DataTemplateService {
                 List<Object> data = readExcel(excel, new DataIncomeAndDistributionInformationModel());
                 dataIncomeAndDistributionInformationService.transferAndSave(data, year, townId);
             } else if (templateId.equals("8")) {
-                List<Object> data = readExcel(excel, new DataIncomeAndDistributionInformationModel());
+                List<Object> data = readExcel(excel, new DataLandTransferModel());
                 dataLandTransferService.transferAndSave(data, year, townId);
             } else if (templateId.equals("9")) {
-                List<Object> data = readExcel(excel, new DataIncomeAndDistributionInformationModel());
-                dataLandTransferService.transferAndSave(data, year, townId);
+                List<Object> data = readExcel(excel, new DataNetIncomeStatisticsModel());
+                dataNetIncomeStatisticsService.transferAndSave(data, year, townId);
             } else if (templateId.equals("10")) {
-                List<Object> data = readExcel(excel, new DataIncomeAndDistributionInformationModel());
-                dataLandTransferService.transferAndSave(data, year, townId);
-            } else if (templateId.equals("11")) {
-                List<Object> data = readExcel(excel, new DataIncomeAndDistributionInformationModel());
-                dataLandTransferService.transferAndSave(data, year, townId);
+                List<Object> data = readExcel(excel, new DataPopulationStatusModel());
+                dataPopulationStatusService.transferAndSave(data, year, townId);
+            } else  if (templateId.equals("11")){
+                List<Object> data = readExcel(excel, new DataResidenceIncomeModel());
+                dataResidenceIncomeService.transferAndSave(data, year, townId);
             }
 
             DataTemplateDeatil dataTemplateDeatil = dataTemplateDetailRepository.findByTemplateIdAndYearAndTownId(templateId, year, townId);

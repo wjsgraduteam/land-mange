@@ -1,16 +1,19 @@
 package com.lete.land.landdal.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "d_net_income_statistics")
+@GenericGenerator(name = "jpa-uuid", strategy = "uuid")
 public class DataNetIncomeStatistics {
     @Id
     @Column(name = "id")
+    @GeneratedValue(generator = "jpa-uuid")
     private String id;
+    @Column(name = "town_id")
+    private String townId;
     @Column(name = "plot_number")
     private String plotNumber;
     @Column(name = "town")
@@ -18,23 +21,23 @@ public class DataNetIncomeStatistics {
     @Column(name = "village")
     private String village;
     @Column(name = "contracted_area")
-    private Integer contractedArea;
+    private Double contractedArea;
     @Column(name = "rice_fields")
-    private String riceFields;
+    private Double riceFields;
     @Column(name = "vegetable_field")
-    private String vegetableField;
+    private Double vegetableField;
     @Column(name = "orchard")
-    private String orchard;
+    private Double orchard;
     @Column(name = "fish_pond")
-    private String fishPond;
+    private Double fishPond;
     @Column(name = "qita")
-    private String qita;
+    private Double qita;
     @Column(name = "operator_name")
     private String operatorName;
     @Column(name = "operator_type")
     private Integer operatorType;
     @Column(name = "total_net_income")
-    private Integer totalNetIncome;
+    private Double totalNetIncome;
     @Column(name = "year")
     private String year;
 
@@ -44,6 +47,14 @@ public class DataNetIncomeStatistics {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getTownId() {
+        return townId;
+    }
+
+    public void setTownId(String townId) {
+        this.townId = townId;
     }
 
     public String getPlotNumber() {
@@ -70,51 +81,51 @@ public class DataNetIncomeStatistics {
         this.village = village;
     }
 
-    public Integer getContractedArea() {
+    public Double getContractedArea() {
         return contractedArea;
     }
 
-    public void setContractedArea(Integer contractedArea) {
+    public void setContractedArea(Double contractedArea) {
         this.contractedArea = contractedArea;
     }
 
-    public String getRiceFields() {
+    public Double getRiceFields() {
         return riceFields;
     }
 
-    public void setRiceFields(String riceFields) {
+    public void setRiceFields(Double riceFields) {
         this.riceFields = riceFields;
     }
 
-    public String getVegetableField() {
+    public Double getVegetableField() {
         return vegetableField;
     }
 
-    public void setVegetableField(String vegetableField) {
+    public void setVegetableField(Double vegetableField) {
         this.vegetableField = vegetableField;
     }
 
-    public String getOrchard() {
+    public Double getOrchard() {
         return orchard;
     }
 
-    public void setOrchard(String orchard) {
+    public void setOrchard(Double orchard) {
         this.orchard = orchard;
     }
 
-    public String getFishPond() {
+    public Double getFishPond() {
         return fishPond;
     }
 
-    public void setFishPond(String fishPond) {
+    public void setFishPond(Double fishPond) {
         this.fishPond = fishPond;
     }
 
-    public String getQita() {
+    public Double getQita() {
         return qita;
     }
 
-    public void setQita(String qita) {
+    public void setQita(Double qita) {
         this.qita = qita;
     }
 
@@ -134,11 +145,11 @@ public class DataNetIncomeStatistics {
         this.operatorType = operatorType;
     }
 
-    public Integer getTotalNetIncome() {
+    public Double getTotalNetIncome() {
         return totalNetIncome;
     }
 
-    public void setTotalNetIncome(Integer totalNetIncome) {
+    public void setTotalNetIncome(Double totalNetIncome) {
         this.totalNetIncome = totalNetIncome;
     }
 

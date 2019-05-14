@@ -15,35 +15,27 @@ public class DataIncomeAndDistributionInformationModel extends BaseRowModel {
     @ExcelProperty(value = "村",index = 4)
     private String village;
     @ExcelProperty(value = "净收益总额",index = 5)
-    private Integer totalNetIncome;
+    private Double totalNetIncome;
     @ExcelProperty(value = "土地经营及租赁收入",index = 6)
-    private Integer lmAndReIncome;
+    private Double lmAndReIncome;
     @ExcelProperty(value = "村集体分配额",index = 7)
-    private Integer vca;
+    private Double vca;
     @ExcelProperty(value = "股东分配额",index = 8)
-    private Integer shareholderAllocation;
+    private Double shareholderAllocation;
     @ExcelProperty(value = "本期留存额",index = 9)
-    private Integer currentRetention;
+    private Double currentRetention;
     @ExcelProperty(value = "上期结转额",index = 10)
-    private Integer lta;
+    private Double lta;
     @ExcelProperty(value = "农村型股份总数",index = 11)
     private Integer rsTolNum;
     @ExcelProperty(value = "农村型股份单价",index = 12)
-    private Integer ruralUnitPrice;
+    private Double ruralUnitPrice;
     @ExcelProperty(value = "城市型股份总数",index = 13)
     private Integer csTolNum;
     @ExcelProperty(value = "城市型股份单价",index = 14)
-    private Integer ctup;
+    private Double ctup;
     @ExcelProperty(value = "统计年份",index = 15)
     private String year;
-
-    public String getTownId() {
-        return townId;
-    }
-
-    public void setTownId(String townId) {
-        this.townId = townId;
-    }
 
     public String getId() {
         return id;
@@ -51,6 +43,14 @@ public class DataIncomeAndDistributionInformationModel extends BaseRowModel {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getTownId() {
+        return townId;
+    }
+
+    public void setTownId(String townId) {
+        this.townId = townId;
     }
 
     public String getNumber() {
@@ -77,51 +77,51 @@ public class DataIncomeAndDistributionInformationModel extends BaseRowModel {
         this.village = village;
     }
 
-    public Integer getTotalNetIncome() {
+    public Double getTotalNetIncome() {
         return totalNetIncome;
     }
 
-    public void setTotalNetIncome(Integer totalNetIncome) {
+    public void setTotalNetIncome(Double totalNetIncome) {
         this.totalNetIncome = totalNetIncome;
     }
 
-    public Integer getLmAndReIncome() {
+    public Double getLmAndReIncome() {
         return lmAndReIncome;
     }
 
-    public void setLmAndReIncome(Integer lmAndReIncome) {
+    public void setLmAndReIncome(Double lmAndReIncome) {
         this.lmAndReIncome = lmAndReIncome;
     }
 
-    public Integer getVca() {
+    public Double getVca() {
         return vca;
     }
 
-    public void setVca(Integer vca) {
+    public void setVca(Double vca) {
         this.vca = vca;
     }
 
-    public Integer getShareholderAllocation() {
+    public Double getShareholderAllocation() {
         return shareholderAllocation;
     }
 
-    public void setShareholderAllocation(Integer shareholderAllocation) {
+    public void setShareholderAllocation(Double shareholderAllocation) {
         this.shareholderAllocation = shareholderAllocation;
     }
 
-    public Integer getCurrentRetention() {
+    public Double getCurrentRetention() {
         return currentRetention;
     }
 
-    public void setCurrentRetention(Integer currentRetention) {
+    public void setCurrentRetention(Double currentRetention) {
         this.currentRetention = currentRetention;
     }
 
-    public Integer getLta() {
+    public Double getLta() {
         return lta;
     }
 
-    public void setLta(Integer lta) {
+    public void setLta(Double lta) {
         this.lta = lta;
     }
 
@@ -133,11 +133,11 @@ public class DataIncomeAndDistributionInformationModel extends BaseRowModel {
         this.rsTolNum = rsTolNum;
     }
 
-    public Integer getRuralUnitPrice() {
+    public Double getRuralUnitPrice() {
         return ruralUnitPrice;
     }
 
-    public void setRuralUnitPrice(Integer ruralUnitPrice) {
+    public void setRuralUnitPrice(Double ruralUnitPrice) {
         this.ruralUnitPrice = ruralUnitPrice;
     }
 
@@ -149,11 +149,11 @@ public class DataIncomeAndDistributionInformationModel extends BaseRowModel {
         this.csTolNum = csTolNum;
     }
 
-    public Integer getCtup() {
+    public Double getCtup() {
         return ctup;
     }
 
-    public void setCtup(Integer ctup) {
+    public void setCtup(Double ctup) {
         this.ctup = ctup;
     }
 

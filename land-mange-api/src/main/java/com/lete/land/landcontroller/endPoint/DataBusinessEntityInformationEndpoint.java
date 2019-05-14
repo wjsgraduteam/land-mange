@@ -2,7 +2,6 @@ package com.lete.land.landcontroller.endPoint;
 
 import com.lete.land.landdal.Result;
 import com.lete.land.landdal.entity.DataBusinessEntityInformation;
-import com.lete.land.landdal.entity.DataLandUseType;
 import com.lete.land.landdal.service.DataBusinessEntityInformationService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 
 @Controller
-@RequestMapping(value = "/api/business-entity-information")
+@RequestMapping(value = "/guest/api/business-entity-information")
 public class DataBusinessEntityInformationEndpoint {
     @Resource
     private DataBusinessEntityInformationService dataBusinessEntityInformationService;

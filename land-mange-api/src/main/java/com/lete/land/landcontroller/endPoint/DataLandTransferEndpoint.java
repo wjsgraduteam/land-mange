@@ -1,7 +1,6 @@
 package com.lete.land.landcontroller.endPoint;
 
 import com.lete.land.landdal.Result;
-import com.lete.land.landdal.entity.DataIncomeAndDistributionInformation;
 import com.lete.land.landdal.entity.DataLandTransfer;
 import com.lete.land.landdal.service.DataLandTransferService;
 import org.springframework.data.domain.Page;
@@ -13,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 
 @Controller
-@RequestMapping(value = "api/land-transfer")
+@RequestMapping(value = "/api/land-transfer")
 public class DataLandTransferEndpoint {
     @Resource
     private DataLandTransferService dataLandTransferService;

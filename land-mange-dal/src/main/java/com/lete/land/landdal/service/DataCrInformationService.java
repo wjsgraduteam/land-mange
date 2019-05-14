@@ -28,10 +28,10 @@ public class DataCrInformationService {
                 predicates.add(criteriaBuilder.equal(root.get("year"),year));
             }
             if(!StringUtils.isEmpty(village)) {
-                predicates.add(criteriaBuilder.equal(root.get("village"),year));
+                predicates.add(criteriaBuilder.equal(root.get("village"),village));
             }
             if(!StringUtils.isEmpty(townId)) {
-                predicates.add(criteriaBuilder.equal(root.get("townId"),year));
+                predicates.add(criteriaBuilder.equal(root.get("townId"),townId));
             }
             Predicate[] array = new Predicate[predicates.size()];
             return criteriaBuilder.and(predicates.toArray(array));

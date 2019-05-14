@@ -15,7 +15,7 @@ public class DataBusinessEntityInformationModel extends BaseRowModel {
     @ExcelProperty(value = "所在村",index = 4)
     private String village;
     @ExcelProperty(value = "承包地面积",index = 5)
-    private Integer contractedArea;
+    private Double contractedArea;
     @ExcelProperty(value = "经营者姓名或名称",index = 6)
     private String operatorName;
     @ExcelProperty(value = "身份证号码或组织机构代码",index = 7)
@@ -69,11 +69,11 @@ public class DataBusinessEntityInformationModel extends BaseRowModel {
         this.village = village;
     }
 
-    public Integer getContractedArea() {
+    public Double getContractedArea() {
         return contractedArea;
     }
 
-    public void setContractedArea(Integer contractedArea) {
+    public void setContractedArea(Double contractedArea) {
         this.contractedArea = contractedArea;
     }
 

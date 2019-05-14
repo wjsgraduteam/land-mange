@@ -1,15 +1,16 @@
 package com.lete.land.landdal.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "d_income_and_distribution_information")
+@GenericGenerator(name = "jpa-uuid", strategy = "uuid")
 public class DataIncomeAndDistributionInformation {
     @Id
     @Column(name = "id")
+    @GeneratedValue(generator = "jpa-uuid")
     private String id;
     @Column(name = "town_id")
     private String townId;
@@ -20,35 +21,27 @@ public class DataIncomeAndDistributionInformation {
     @Column(name = "village")
     private String village;
     @Column(name = "total_net_income")
-    private Integer totalNetIncome;
+    private Double totalNetIncome;
     @Column(name = "lm_and_re_income")
-    private Integer lmAndReIncome;
+    private Double lmAndReIncome;
     @Column(name = "vca")
-    private Integer vca;
+    private Double vca;
     @Column(name = "shareholder_allocation")
-    private Integer shareholderAllocation;
+    private Double shareholderAllocation;
     @Column(name = "current_retention")
-    private Integer currentRetention;
+    private Double currentRetention;
     @Column(name = "lta")
-    private Integer lta;
+    private Double lta;
     @Column(name = "rs_tol_num")
     private Integer rsTolNum;
     @Column(name = "rural_unit_price")
-    private Integer ruralUnitPrice;
+    private Double ruralUnitPrice;
     @Column(name = "cs_tol_num")
     private Integer csTolNum;
     @Column(name = "ctup")
-    private Integer ctup;
+    private Double ctup;
     @Column(name = "year")
     private String year;
-
-    public String getTownId() {
-        return townId;
-    }
-
-    public void setTownId(String townId) {
-        this.townId = townId;
-    }
 
     public String getId() {
         return id;
@@ -56,6 +49,14 @@ public class DataIncomeAndDistributionInformation {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getTownId() {
+        return townId;
+    }
+
+    public void setTownId(String townId) {
+        this.townId = townId;
     }
 
     public String getNumber() {
@@ -82,51 +83,51 @@ public class DataIncomeAndDistributionInformation {
         this.village = village;
     }
 
-    public Integer getTotalNetIncome() {
+    public Double getTotalNetIncome() {
         return totalNetIncome;
     }
 
-    public void setTotalNetIncome(Integer totalNetIncome) {
+    public void setTotalNetIncome(Double totalNetIncome) {
         this.totalNetIncome = totalNetIncome;
     }
 
-    public Integer getLmAndReIncome() {
+    public Double getLmAndReIncome() {
         return lmAndReIncome;
     }
 
-    public void setLmAndReIncome(Integer lmAndReIncome) {
+    public void setLmAndReIncome(Double lmAndReIncome) {
         this.lmAndReIncome = lmAndReIncome;
     }
 
-    public Integer getVca() {
+    public Double getVca() {
         return vca;
     }
 
-    public void setVca(Integer vca) {
+    public void setVca(Double vca) {
         this.vca = vca;
     }
 
-    public Integer getShareholderAllocation() {
+    public Double getShareholderAllocation() {
         return shareholderAllocation;
     }
 
-    public void setShareholderAllocation(Integer shareholderAllocation) {
+    public void setShareholderAllocation(Double shareholderAllocation) {
         this.shareholderAllocation = shareholderAllocation;
     }
 
-    public Integer getCurrentRetention() {
+    public Double getCurrentRetention() {
         return currentRetention;
     }
 
-    public void setCurrentRetention(Integer currentRetention) {
+    public void setCurrentRetention(Double currentRetention) {
         this.currentRetention = currentRetention;
     }
 
-    public Integer getLta() {
+    public Double getLta() {
         return lta;
     }
 
-    public void setLta(Integer lta) {
+    public void setLta(Double lta) {
         this.lta = lta;
     }
 
@@ -138,11 +139,11 @@ public class DataIncomeAndDistributionInformation {
         this.rsTolNum = rsTolNum;
     }
 
-    public Integer getRuralUnitPrice() {
+    public Double getRuralUnitPrice() {
         return ruralUnitPrice;
     }
 
-    public void setRuralUnitPrice(Integer ruralUnitPrice) {
+    public void setRuralUnitPrice(Double ruralUnitPrice) {
         this.ruralUnitPrice = ruralUnitPrice;
     }
 
@@ -154,11 +155,11 @@ public class DataIncomeAndDistributionInformation {
         this.csTolNum = csTolNum;
     }
 
-    public Integer getCtup() {
+    public Double getCtup() {
         return ctup;
     }
 
-    public void setCtup(Integer ctup) {
+    public void setCtup(Double ctup) {
         this.ctup = ctup;
     }
 

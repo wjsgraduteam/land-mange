@@ -1,50 +1,44 @@
-package com.lete.land.landdal.entity;
+package com.lete.land.landdal.vo.excelModel;
 
-import org.hibernate.annotations.GenericGenerator;
+import com.alibaba.excel.annotation.ExcelProperty;
+import com.alibaba.excel.metadata.BaseRowModel;
 
-import javax.persistence.*;
-
-@Entity
-@Table(name = "d_population_status")
-@GenericGenerator(name = "jpa-uuid", strategy = "uuid")
-public class DataPopulationStatus {
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(generator = "jpa-uuid")
+public class DataPopulationStatusModel extends BaseRowModel {
+    @ExcelProperty(value = "序号",index = 0)
     private String id;
-    @Column(name = "town_id")
+    @ExcelProperty(value = "镇编号",index = 1)
     private String townId;
-    @Column(name = "village")
+    @ExcelProperty(value = "所在村",index = 5)
     private String village;
-    @Column(name = "town")
+    @ExcelProperty(value = "所在镇",index = 3)
     private String town;
-    @Column(name = "total_resident_pop")
+    @ExcelProperty(value = "常住人口总数",index = 4)
     private Integer totalResidentPop;
-    @Column(name = "total_registered_pop")
+    @ExcelProperty(value = "户籍人口总数",index = 5)
     private Integer totalRegisteredPop;
-    @Column(name = "total_num_reg")
+    @ExcelProperty(value = "户籍人口总户数",index = 6)
     private Integer totalNumReg;
-    @Column(name = "total_num_migrants")
+    @ExcelProperty(value = "外来人口总数",index = 7)
     private Integer totalNumMigrants;
-    @Column(name = "nrcm_insurance")
+    @ExcelProperty(value = "新型农村合作医疗参保人数",index = 8)
     private Integer nrcmInsurance;
-    @Column(name = "pension_insurance")
+    @ExcelProperty(value = "养老保险参保人数",index = 9)
     private Integer pensionInsurance;
-    @Column(name = "mlar_residents")
+    @ExcelProperty(value = "农村居民最低生活保障人数",index = 10)
     private Integer mlarResidents;
-    @Column(name = "nrfs")
+    @ExcelProperty(value = "农村五保供养人数",index = 11)
     private Integer nrfs;
-    @Column(name = "households_num")
+    @ExcelProperty(value = "截至本年末耕地被全部征用农户户数",index = 12)
     private Integer householdsNum;
-    @Column(name = "ri_population")
+    @ExcelProperty(value = "截至本年末耕地被全部征用涉及人口",index = 13)
     private Integer riPopulation;
-    @Column(name = "hp_num")
+    @ExcelProperty(value = "参加农民合作社的户数",index = 14)
     private Integer hpNum;
-    @Column(name = "scale_growers")
+    @ExcelProperty(value = "规模种植户数",index = 15)
     private Integer scaleGrowers;
-    @Column(name = "dividend")
+    @ExcelProperty(value = "全年本村居民人均从村集体获得的收益",index = 16)
     private Double dividend;
-    @Column(name = "year")
+    @ExcelProperty(value = "统计年份",index = 17)
     private String year;
 
     public String getId() {

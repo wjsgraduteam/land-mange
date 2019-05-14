@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface DataTemplateRepository extends JpaRepository<DataTemplate,String>, JpaSpecificationExecutor<DataTemplate> {
 
-    @Query(value = "SELECT  column_name, column_comment FROM information_schema.columns WHERE table_schema ='land_mange' AND  table_name = ?1" ,nativeQuery = true)
+    @Query(value = "SELECT  column_name, column_comment FROM information_schema.columns WHERE table_schema ='land_mange' AND  table_name = ? AND column_comment !='' " ,nativeQuery = true)
     List<Object[]> findTemplateCommentsByTableName(String tableName);
 
     @Query(value = "SELECT table_head FROM d_template  d WHERE d.table_name = ?1",nativeQuery = true)

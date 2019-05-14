@@ -22,21 +22,22 @@ public class DataConLandInformationService {
     @Resource
     private DataConLandInformationRepository dataConLandInformationRepository;
     public Page<DataConLandInformation> getDataConLandInformationPage(String townId, String village, String year, Pageable pageable) {
-      return   dataConLandInformationRepository.findAll((Specification<DataConLandInformation>)(root, criteriaQuery, criteriaBuilder) -> {
+        Page<DataConLandInformation> page =  dataConLandInformationRepository.findAll((Specification<DataConLandInformation>)(root, criteriaQuery, criteriaBuilder) -> {
             List<Predicate> predicates = new LinkedList<>();
 
             if(!StringUtils.isEmpty(year)) {
                 predicates.add(criteriaBuilder.equal(root.get("year"),year));
             }
             if(!StringUtils.isEmpty(village)) {
-                predicates.add(criteriaBuilder.equal(root.get("village"),year));
+                predicates.add(criteriaBuilder.equal(root.get("village"),village));
             }
             if(!StringUtils.isEmpty(townId)) {
-                predicates.add(criteriaBuilder.equal(root.get("townId"),year));
+                predicates.add(criteriaBuilder.equal(root.get("townId"),townId));
             }
             Predicate[] array = new Predicate[predicates.size()];
             return criteriaBuilder.and(predicates.toArray(array));
         },pageable);
+        return  page;
     }
 
 
