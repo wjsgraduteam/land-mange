@@ -72,7 +72,7 @@ public class DataCrInformationService {
           dataCrInformation.setIdCard(model.getIdCard());
           dataCrInformation.setIdCard(model.getIdCard());
           dataCrInformation.setVillage(model.getVillage());
-          dataCrInformation.setSpecial(model.getSpecial());
+          dataCrInformation.setIsSpecial(model.getIsSpecial());
           dataCrInformation.setYear(model.getYear());
 
             list.add(dataCrInformation);

@@ -36,7 +36,7 @@ public class DataHolderInformation {
     private Integer stockType;
     @Column(name = "join_date")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date join_date;
+    private Date joinDate;
     @Column(name = "year")
     private String year;
 
@@ -136,11 +136,11 @@ public class DataHolderInformation {
         this.stockType = stockType;
     }
 
-    public Date getJoin_date() {
-        return join_date;
+    public Date getJoinDate() {
+        return joinDate;
     }
 
-    public void setJoin_date(Date join_date) {
-        this.join_date = join_date;
+    public void setJoinDate(Date joinDate) {
+        this.joinDate = joinDate;
     }
 }

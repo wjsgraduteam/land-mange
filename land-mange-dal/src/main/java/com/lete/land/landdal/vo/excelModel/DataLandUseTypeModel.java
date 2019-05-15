@@ -8,7 +8,10 @@ import com.alibaba.excel.metadata.BaseRowModel;
  */
 public class DataLandUseTypeModel extends BaseRowModel {
     @ExcelProperty(value = "序号",index = 0)
-    private Integer id;
+    private String id;
+
+    @ExcelProperty(value = "镇编号",index = 0)
+    private String townId;
 
     @ExcelProperty(value = "村",index = 1)
     private String village;
@@ -43,12 +46,20 @@ public class DataLandUseTypeModel extends BaseRowModel {
     @ExcelProperty(value = "统计年份",index = 11)
     private String year;
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
+    }
+
+    public String getTownId() {
+        return townId;
+    }
+
+    public void setTownId(String townId) {
+        this.townId = townId;
     }
 
     public String getVillage() {

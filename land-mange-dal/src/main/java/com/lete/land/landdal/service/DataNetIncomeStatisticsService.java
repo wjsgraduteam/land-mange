@@ -40,7 +40,7 @@ public class DataNetIncomeStatisticsService {
             }
             Predicate[] array = new Predicate[predicates.size()];
             return criteriaBuilder.and(predicates.toArray(array));
-        }, pageable);
+        },pageable);
     }
 
     public Result save(DataNetIncomeStatistics dataNetIncomeStatistics) {
@@ -83,9 +83,9 @@ public class DataNetIncomeStatisticsService {
                 dataNetIncomeStatistics.setOperatorName(model.getOperatorName());
                 if (model.getOperatorType().equals(OperatorTypeEnum.Geti.getDesc())) {
                     dataNetIncomeStatistics.setOperatorType(OperatorTypeEnum.Geti.getIdnex());
-                } else if (model.getOperatorType().equals(OperatorTypeEnum.CunJiTi.getIdnex())) {
+                } else if (model.getOperatorType().equals(OperatorTypeEnum.CunJiTi.getDesc())) {
                     dataNetIncomeStatistics.setOperatorType(OperatorTypeEnum.CunJiTi.getIdnex());
-                } else if (model.getOperatorType().equals(OperatorTypeEnum.ZuLin.getIdnex())) {
+                } else if (model.getOperatorType().equals(OperatorTypeEnum.ZuLin.getDesc())) {
                     dataNetIncomeStatistics.setOperatorType(OperatorTypeEnum.ZuLin.getIdnex());
                 }
                 dataNetIncomeStatistics.setYear(model.getYear());

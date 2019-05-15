@@ -19,7 +19,7 @@ public class DataIncomeAndDistributionInformationEndpoint {
     private DataIncomeAndDistributionInformationService dataIncomeAndDistributionInformationService;
     @RequestMapping(value = "/page", method = RequestMethod.GET)
     @ResponseBody
-    public Page<DataIncomeAndDistributionInformation> getDataIncomeAndDistributionInformationPage(
+    public Page<DataIncomeAndDistributionInformation> getIncomeAndDistributionInformationPage(
             @RequestParam(value = "townId",required = false)String townId,
             @RequestParam(value = "village",required = false)String village,
             @RequestParam(value = "year",required = false)String year,
@@ -29,13 +29,13 @@ public class DataIncomeAndDistributionInformationEndpoint {
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
-    public Result save(@RequestBody DataIncomeAndDistributionInformation dataIncomeAndDistributionInformation) {
+    public Result saveIncomeAndDistributionInformation(@RequestBody DataIncomeAndDistributionInformation dataIncomeAndDistributionInformation) {
         return dataIncomeAndDistributionInformationService.save(dataIncomeAndDistributionInformation);
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @ResponseBody
-    public Result delete(@RequestParam(value = "id") String id) {
+    public Result deleteIncomeAndDistributionInformation(@RequestParam(value = "id") String id) {
         return dataIncomeAndDistributionInformationService.delete(id);
     }
 }

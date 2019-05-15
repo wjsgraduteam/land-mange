@@ -15,13 +15,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 
 @Controller
-@RequestMapping(value = "/guest/api/business-entity-information")
+@RequestMapping(value = "/api/business-entity-information")
 public class DataBusinessEntityInformationEndpoint {
     @Resource
     private DataBusinessEntityInformationService dataBusinessEntityInformationService;
     @RequestMapping(value = "/page", method = RequestMethod.GET)
     @ResponseBody
-    public Page<DataBusinessEntityInformation> getLandUseTypePage(
+    public Page<DataBusinessEntityInformation> getBusinessEntityInformationPage(
             @RequestParam(value = "townId",required = false)String townId,
             @RequestParam(value = "village",required = false)String village,
             @RequestParam(value = "year",required = false)String year,
@@ -31,13 +31,13 @@ public class DataBusinessEntityInformationEndpoint {
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
-    public Result save() {
-        return dataBusinessEntityInformationService.save();
+    public Result saveBusinessEntityInformation(DataBusinessEntityInformation dataBusinessEntityInformation) {
+        return dataBusinessEntityInformationService.save(dataBusinessEntityInformation);
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @ResponseBody
-    public Result deleteRegPopulation(@RequestParam(value = "id") String id) {
+    public Result deleteBusinessEntityInformation(@RequestParam(value = "id") String id) {
         return dataBusinessEntityInformationService.delete(id);
     }
 }

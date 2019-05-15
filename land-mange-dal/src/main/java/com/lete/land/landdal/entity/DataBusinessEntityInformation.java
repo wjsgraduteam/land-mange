@@ -1,9 +1,11 @@
 package com.lete.land.landdal.entity;
 
+
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "d_business_entity_information")
@@ -30,8 +32,8 @@ public class DataBusinessEntityInformation {
     @Column(name = "operator_type")
     private Integer operatorType;
     @Column(name = "start_date")
-    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private String startDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date startDate;
     @Column(name = "operating_period")
     private String operatingPeriod;
     @Column(name = "year")
@@ -109,11 +111,11 @@ public class DataBusinessEntityInformation {
         this.operatorType = operatorType;
     }
 
-    public String getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(String startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 

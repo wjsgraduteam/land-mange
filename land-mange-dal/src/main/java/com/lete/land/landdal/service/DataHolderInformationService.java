@@ -78,7 +78,7 @@ public class DataHolderInformationService {
             }else {
                 dataHolderInformation.setStockType(ShareEnum.Vill.getIdnex());
             }
-            dataHolderInformation.setJoin_date(model.getJoin_date());
+            dataHolderInformation.setJoinDate(model.getJoinDate());
             dataHolderInformation.setYear(model.getYear());
             list.add(dataHolderInformation);
         }

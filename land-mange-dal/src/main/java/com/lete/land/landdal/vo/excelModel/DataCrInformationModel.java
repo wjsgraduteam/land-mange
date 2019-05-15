@@ -19,7 +19,7 @@ public class DataCrInformationModel extends BaseRowModel {
     @ExcelProperty(value = "所在村",index = 6)
     private String village;
     @ExcelProperty(value = "特色田园村庄农户",index = 7)
-    private Boolean isSpecial;
+    private String isSpecial;
     @ExcelProperty(value = "统计年份",index = 8)
     private String year;
 
@@ -79,12 +79,12 @@ public class DataCrInformationModel extends BaseRowModel {
         this.village = village;
     }
 
-    public Boolean getSpecial() {
+    public String getIsSpecial() {
         return isSpecial;
     }
 
-    public void setSpecial(Boolean special) {
-        isSpecial = special;
+    public void setIsSpecial(String isSpecial) {
+        this.isSpecial = isSpecial;
     }
 
     public String getYear() {

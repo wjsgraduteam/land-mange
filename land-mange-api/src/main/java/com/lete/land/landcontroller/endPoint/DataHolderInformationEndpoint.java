@@ -18,7 +18,7 @@ public class DataHolderInformationEndpoint {
     private DataHolderInformationService dataHolderInformationService;
     @RequestMapping(value = "/page", method = RequestMethod.GET)
     @ResponseBody
-    public Page<DataHolderInformation> getDataHolderInformationPage(
+    public Page<DataHolderInformation> getHolderInformationPage(
             @RequestParam(value = "townId",required = false)String townId,
             @RequestParam(value = "village",required = false)String village,
             @RequestParam(value = "year",required = false)String year,
@@ -28,13 +28,13 @@ public class DataHolderInformationEndpoint {
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
-    public Result save(@RequestBody DataHolderInformation dataHolderInformation) {
+    public Result saveHolderInformation(@RequestBody DataHolderInformation dataHolderInformation) {
         return dataHolderInformationService.save(dataHolderInformation);
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @ResponseBody
-    public Result delete(@RequestParam(value = "id") String id) {
+    public Result deleteHolderInformation(@RequestParam(value = "id") String id) {
         return dataHolderInformationService.delete(id);
     }
 }

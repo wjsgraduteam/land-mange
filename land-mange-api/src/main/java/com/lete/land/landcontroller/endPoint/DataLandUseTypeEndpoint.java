@@ -34,13 +34,13 @@ public class DataLandUseTypeEndpoint {
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
-    public Result save(@RequestBody DataLandUseType dataLandUseType) {
+    public Result saveLandUseType(@RequestBody DataLandUseType dataLandUseType) {
         return dataLandUseTypeService.save(dataLandUseType);
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @ResponseBody
-    public Result deleteRegPopulation(@RequestParam(value = "id") String id) {
+    public Result deleteLandUseType(@RequestParam(value = "id") String id) {
         return dataLandUseTypeService.delete(id);
     }
 

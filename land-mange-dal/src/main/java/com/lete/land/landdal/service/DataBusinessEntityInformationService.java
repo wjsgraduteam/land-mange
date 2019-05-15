@@ -36,24 +36,24 @@ public class DataBusinessEntityInformationService {
                 DataBusinessEntityInformationModel model = (DataBusinessEntityInformationModel) obj;
                 String uuid = UUID.randomUUID().toString().replace("-", "");
                 dataBusinessEntityInformation.setId(uuid);
-                dataBusinessEntityInformation.setPlotNumber(model.getIdCard());
-                dataBusinessEntityInformation.setContractedArea(model.getContractedArea());
                 dataBusinessEntityInformation.setTownId(model.getTownId());
+                dataBusinessEntityInformation.setPlotNumber(model.getIdCard());
+                dataBusinessEntityInformation.setTown(model.getTown());
+                dataBusinessEntityInformation.setVillage(model.getVillage());
+                dataBusinessEntityInformation.setContractedArea(model.getContractedArea());
                 dataBusinessEntityInformation.setOperatorName(model.getOperatorName());
                 dataBusinessEntityInformation.setIdCard(model.getIdCard());
-                dataBusinessEntityInformation.setStartDate(model.getStartDate());
-                dataBusinessEntityInformation.setOperatingPeriod(model.getOperatingPeriod());
-                dataBusinessEntityInformation.setYear(model.getYear());
 
                 if(model.getOperatorType().equals(OperatorTypeEnum.Geti.getDesc())) {
                     dataBusinessEntityInformation.setOperatorType(OperatorTypeEnum.Geti.getIdnex());
-                }else if (model.getOperatorType().equals(OperatorTypeEnum.CunJiTi.getIdnex())){
+                }else if (model.getOperatorType().equals(OperatorTypeEnum.CunJiTi.getDesc())){
                     dataBusinessEntityInformation.setOperatorType(OperatorTypeEnum.CunJiTi.getIdnex());
-                }else if (model.getOperatorType().equals(OperatorTypeEnum.ZuLin.getIdnex())){
+                }else if (model.getOperatorType().equals(OperatorTypeEnum.ZuLin.getDesc())){
                     dataBusinessEntityInformation.setOperatorType(OperatorTypeEnum.ZuLin.getIdnex());
                 }
-                dataBusinessEntityInformation.setTown(model.getTown());
-                dataBusinessEntityInformation.setVillage(model.getVillage());
+                dataBusinessEntityInformation.setStartDate(model.getStartDate());
+                dataBusinessEntityInformation.setOperatingPeriod(model.getOperatingPeriod());
+                dataBusinessEntityInformation.setYear(model.getYear());
                 list.add(dataBusinessEntityInformation);
             }
         }catch (Exception e){
@@ -81,14 +81,11 @@ public class DataBusinessEntityInformationService {
         },pageable );
     }
 
-    public Result save() {
-        DataBusinessEntityInformation dataBusinessEntityInformation = new DataBusinessEntityInformation();
-        dataBusinessEntityInformation.setTown("什么镇");
+    public Result save(DataBusinessEntityInformation dataBusinessEntityInformation) {
         try{
             dataBusinessEntityInformationRepository.save(dataBusinessEntityInformation);
             return ResultFactory.buildSuccessResult("保存成功");
         }catch (Exception e) {
-          //  System.out.println(e);
             return ResultFactory.buildFailResult("保存失败");
         }
     }

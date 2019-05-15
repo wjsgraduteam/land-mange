@@ -28,13 +28,13 @@ public class DataCrInformationEndpoint {
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
-    public Result save(@RequestBody DataCrInformation dataCrInformation) {
+    public Result saveCrInformation(@RequestBody DataCrInformation dataCrInformation) {
         return dataCrInformationService.save(dataCrInformation);
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @ResponseBody
-    public Result delete(@RequestParam(value = "id") String id) {
+    public Result deleteCrInformation(@RequestParam(value = "id") String id) {
         return dataCrInformationService.delete(id);
     }
 

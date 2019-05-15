@@ -19,7 +19,7 @@ public class DataResidenceIncomeEndpoint {
 
     @RequestMapping(value = "/page", method = RequestMethod.GET)
     @ResponseBody
-    public Page<DataResidenceIncome> getDataResidenceIncomePage(
+    public Page<DataResidenceIncome> getResidenceIncomePage(
             @RequestParam(value = "townId", required = false) String townId,
             @RequestParam(value = "village", required = false) String village,
             @RequestParam(value = "year", required = false) String year,
@@ -29,13 +29,13 @@ public class DataResidenceIncomeEndpoint {
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
-    public Result save(@RequestBody DataResidenceIncome dataResidenceIncome) {
+    public Result saveResidenceIncome(@RequestBody DataResidenceIncome dataResidenceIncome) {
         return dataResidenceIncomeService.save(dataResidenceIncome);
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @ResponseBody
-    public Result delete(@RequestParam(value = "id") String id) {
+    public Result deleteResidenceIncome(@RequestParam(value = "id") String id) {
         return dataResidenceIncomeService.delete(id);
     }
 }

@@ -72,7 +72,7 @@ public class DataConLandInformationService {
             dataConLandInformation.setIdCard(model.getIdCard());
             dataConLandInformation.setFamilyNum(model.getFamilyNum());
             dataConLandInformation.setConLandNum(model.getConLandNum());
-            dataConLandInformation.setBackground(model.getBackground());
+            dataConLandInformation.setIsBackground(model.getIsBackground());
             dataConLandInformation.setTown(model.getTown());
             dataConLandInformation.setVillage(model.getVillage());
             dataConLandInformation.setYear(model.getYear());

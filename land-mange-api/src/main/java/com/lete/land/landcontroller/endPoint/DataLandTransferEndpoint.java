@@ -18,7 +18,7 @@ public class DataLandTransferEndpoint {
     private DataLandTransferService dataLandTransferService;
     @RequestMapping(value = "/page", method = RequestMethod.GET)
     @ResponseBody
-    public Page<DataLandTransfer> getDataLandTransferPage(
+    public Page<DataLandTransfer> getLandTransferPage(
             @RequestParam(value = "townId",required = false)String townId,
             @RequestParam(value = "village",required = false)String village,
             @RequestParam(value = "year",required = false)String year,
@@ -28,13 +28,13 @@ public class DataLandTransferEndpoint {
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
-    public Result save(@RequestBody DataLandTransfer dataLandTransfer) {
+    public Result saveLandTransfer(@RequestBody DataLandTransfer dataLandTransfer) {
         return dataLandTransferService.save(dataLandTransfer);
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @ResponseBody
-    public Result delete(@RequestParam(value = "id") String id) {
+    public Result deleteLandTransfer(@RequestParam(value = "id") String id) {
         return dataLandTransferService.delete(id);
     }
 }

@@ -27,7 +27,7 @@ public class DataCrInformation {
     @Column(name = "village")
     private String village;
     @Column(name = "is_special")
-    private Boolean isSpecial;
+    private String isSpecial;
     @Column(name = "year")
     private String year;
 
@@ -95,11 +95,11 @@ public class DataCrInformation {
         this.village = village;
     }
 
-    public Boolean getSpecial() {
+    public String getIsSpecial() {
         return isSpecial;
     }
 
-    public void setSpecial(Boolean special) {
-        isSpecial = special;
+    public void setIsSpecial(String isSpecial) {
+        this.isSpecial = isSpecial;
     }
 }

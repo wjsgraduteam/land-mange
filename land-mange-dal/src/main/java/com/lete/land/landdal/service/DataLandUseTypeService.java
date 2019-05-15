@@ -55,7 +55,6 @@ public class DataLandUseTypeService {
             return ResultFactory.buildFailResult("保存失败");
         }
     }
-
     public Result delete(String id) {
         try{
             dataLandUseRepository.deleteById(id);
@@ -71,6 +70,8 @@ public class DataLandUseTypeService {
             for(Object obj : modelList){
                 DataLandUseType dataLandUseType = new DataLandUseType();
                 DataLandUseTypeModel model = (DataLandUseTypeModel)obj;
+                dataLandUseType.setId(model.getId());
+                dataLandUseType.setTownId(model.getTownId());
                 dataLandUseType.setVillage(model.getVillage());
                 dataLandUseType.setTown(model.getTown());
                 dataLandUseType.setTownId(townId);
@@ -87,8 +88,6 @@ public class DataLandUseTypeService {
 
                 list.add(dataLandUseType);
             }
-
-
         dataLandUseRepository.saveAll(list);
     }
 
@@ -120,7 +119,6 @@ public class DataLandUseTypeService {
             excelAnalysisVo.setYearendCulArea(computer.getSumData());
             excelAnalysisVoList.add(excelAnalysisVo);
         });
-
         return excelAnalysisVoList;
     }
 

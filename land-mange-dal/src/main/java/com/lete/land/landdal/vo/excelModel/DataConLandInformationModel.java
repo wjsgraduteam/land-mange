@@ -19,12 +19,12 @@ public class DataConLandInformationModel extends BaseRowModel {
     @ExcelProperty(value = "承包地数量",index = 6)
     private Integer conLandNum;
     @ExcelProperty(value = "是否退地",index = 7)
-    private Boolean isBackground;
+    private String isBackground;
     @ExcelProperty(value = "所在镇",index = 8)
     private String town;
     @ExcelProperty(value = "所在村",index = 9)
     private String village;
-    @ExcelProperty(value = "统计年份",index = 9)
+    @ExcelProperty(value = "统计年份",index = 10)
     private String year;
 
     public String getTownId() {
@@ -83,12 +83,12 @@ public class DataConLandInformationModel extends BaseRowModel {
         this.conLandNum = conLandNum;
     }
 
-    public Boolean getBackground() {
+    public String getIsBackground() {
         return isBackground;
     }
 
-    public void setBackground(Boolean background) {
-        isBackground = background;
+    public void setIsBackground(String isBackground) {
+        this.isBackground = isBackground;
     }
 
     public String getTown() {

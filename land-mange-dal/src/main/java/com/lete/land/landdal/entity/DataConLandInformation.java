@@ -25,7 +25,7 @@ public class DataConLandInformation {
     @Column(name = "con_land_num")
     private Integer conLandNum;
     @Column(name = "is_background")
-    private Boolean isBackground;
+    private String isBackground;
     @Column(name = "town")
     private String town;
     @Column(name = "village")
@@ -97,12 +97,12 @@ public class DataConLandInformation {
         this.conLandNum = conLandNum;
     }
 
-    public Boolean getBackground() {
+    public String getIsBackground() {
         return isBackground;
     }
 
-    public void setBackground(Boolean background) {
-        isBackground = background;
+    public void setIsBackground(String isBackground) {
+        this.isBackground = isBackground;
     }
 
     public String getTown() {
