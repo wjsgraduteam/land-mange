@@ -20,29 +20,30 @@ import java.util.List;
 public class DataCrInformationService {
     @Resource
     private DataCrInformationRepository dataCrInformationRepository;
+
     public Page<DataCrInformation> getCrInformationPage(String townId, String village, String year, Pageable pageable) {
         return dataCrInformationRepository.findAll((Specification<DataCrInformation>) (root, criteriaQuery, criteriaBuilder) -> {
             List<Predicate> predicates = new LinkedList<>();
 
-            if(!StringUtils.isEmpty(year)) {
-                predicates.add(criteriaBuilder.equal(root.get("year"),year));
+            if (!StringUtils.isEmpty(year)) {
+                predicates.add(criteriaBuilder.equal(root.get("year"), year));
             }
-            if(!StringUtils.isEmpty(village)) {
-                predicates.add(criteriaBuilder.equal(root.get("village"),village));
+            if (!StringUtils.isEmpty(village)) {
+                predicates.add(criteriaBuilder.equal(root.get("village"), village));
             }
-            if(!StringUtils.isEmpty(townId)) {
-                predicates.add(criteriaBuilder.equal(root.get("townId"),townId));
+            if (!StringUtils.isEmpty(townId)) {
+                predicates.add(criteriaBuilder.equal(root.get("townId"), townId));
             }
             Predicate[] array = new Predicate[predicates.size()];
             return criteriaBuilder.and(predicates.toArray(array));
-        },pageable);
+        }, pageable);
     }
 
     public Result save(DataCrInformation dataCrInformation) {
-        try{
+        try {
             dataCrInformationRepository.save(dataCrInformation);
             return ResultFactory.buildSuccessResult("保存成功");
-        }catch (Exception e) {
+        } catch (Exception e) {
             System.out.println(e);
             return ResultFactory.buildFailResult("保存失败");
         }
@@ -50,10 +51,10 @@ public class DataCrInformationService {
     }
 
     public Result delete(String id) {
-        try{
+        try {
             dataCrInformationRepository.deleteById(id);
             return ResultFactory.buildSuccessResult("保存成功");
-        }catch (Exception e) {
+        } catch (Exception e) {
             return ResultFactory.buildFailResult("保存失败");
         }
 
@@ -62,18 +63,18 @@ public class DataCrInformationService {
     public void transferAndSave(List<Object> modelList, String year, String townId) {
         List<DataCrInformation> list = new ArrayList<>();
 
-        for(Object obj : modelList){
+        for (Object obj : modelList) {
             DataCrInformation dataCrInformation = new DataCrInformation();
             DataCrInformationModel model = (DataCrInformationModel) obj;
-          dataCrInformation.setId(model.getId());
-          dataCrInformation.setTownId(model.getTownId());
-          dataCrInformation.setHrNum(model.getHrNum());
-          dataCrInformation.setHrName(model.getHrName());
-          dataCrInformation.setIdCard(model.getIdCard());
-          dataCrInformation.setIdCard(model.getIdCard());
-          dataCrInformation.setVillage(model.getVillage());
-          dataCrInformation.setIsSpecial(model.getIsSpecial());
-          dataCrInformation.setYear(model.getYear());
+            dataCrInformation.setId(model.getId());
+            dataCrInformation.setTownId(model.getTownId());
+            dataCrInformation.setHrNum(model.getHrNum());
+            dataCrInformation.setHrName(model.getHrName());
+            dataCrInformation.setIdCard(model.getIdCard());
+            dataCrInformation.setIdCard(model.getIdCard());
+            dataCrInformation.setVillage(model.getVillage());
+            dataCrInformation.setIsSpecial(model.getIsSpecial());
+            dataCrInformation.setYear(model.getYear());
 
             list.add(dataCrInformation);
         }

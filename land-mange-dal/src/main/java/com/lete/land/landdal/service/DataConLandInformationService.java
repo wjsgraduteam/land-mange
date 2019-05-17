@@ -21,48 +21,48 @@ public class DataConLandInformationService {
 
     @Resource
     private DataConLandInformationRepository dataConLandInformationRepository;
+
     public Page<DataConLandInformation> getDataConLandInformationPage(String townId, String village, String year, Pageable pageable) {
-        Page<DataConLandInformation> page =  dataConLandInformationRepository.findAll((Specification<DataConLandInformation>)(root, criteriaQuery, criteriaBuilder) -> {
+        Page<DataConLandInformation> page = dataConLandInformationRepository.findAll((Specification<DataConLandInformation>) (root, criteriaQuery, criteriaBuilder) -> {
             List<Predicate> predicates = new LinkedList<>();
 
-            if(!StringUtils.isEmpty(year)) {
-                predicates.add(criteriaBuilder.equal(root.get("year"),year));
+            if (!StringUtils.isEmpty(year)) {
+                predicates.add(criteriaBuilder.equal(root.get("year"), year));
             }
-            if(!StringUtils.isEmpty(village)) {
-                predicates.add(criteriaBuilder.equal(root.get("village"),village));
+            if (!StringUtils.isEmpty(village)) {
+                predicates.add(criteriaBuilder.equal(root.get("village"), village));
             }
-            if(!StringUtils.isEmpty(townId)) {
-                predicates.add(criteriaBuilder.equal(root.get("townId"),townId));
+            if (!StringUtils.isEmpty(townId)) {
+                predicates.add(criteriaBuilder.equal(root.get("townId"), townId));
             }
             Predicate[] array = new Predicate[predicates.size()];
             return criteriaBuilder.and(predicates.toArray(array));
-        },pageable);
-        return  page;
+        }, pageable);
+        return page;
     }
 
 
-
     public Result delete(String id) {
-        try{
+        try {
             dataConLandInformationRepository.deleteById(id);
             return ResultFactory.buildSuccessResult("保存成功");
-        }catch (Exception e) {
+        } catch (Exception e) {
             return ResultFactory.buildFailResult("保存失败");
         }
     }
 
     public Result save(DataConLandInformation dataConLandInformation) {
-        try{
+        try {
             dataConLandInformationRepository.save(dataConLandInformation);
             return ResultFactory.buildSuccessResult("保存成功");
-        }catch (Exception e) {
+        } catch (Exception e) {
             return ResultFactory.buildFailResult("保存失败");
         }
     }
 
     public void transferAndSave(List<Object> modelList, String year, String townId) {
         List<DataConLandInformation> list = new ArrayList<>();
-        for(Object obj : modelList){
+        for (Object obj : modelList) {
             DataConLandInformation dataConLandInformation = new DataConLandInformation();
             DataConLandInformationModel model = (DataConLandInformationModel) obj;
             dataConLandInformation.setId(model.getId());

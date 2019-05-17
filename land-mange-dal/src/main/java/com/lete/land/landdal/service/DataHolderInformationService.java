@@ -21,46 +21,47 @@ import java.util.List;
 public class DataHolderInformationService {
     @Resource
     private DataHolderInformationRepository dataHolderInformationRepository;
+
     public Page<DataHolderInformation> getDataHolderInformationPage(String townId, String village, String year, Pageable pageable) {
-        return   dataHolderInformationRepository.findAll((Specification<DataHolderInformation>)(root, criteriaQuery, criteriaBuilder) -> {
+        return dataHolderInformationRepository.findAll((Specification<DataHolderInformation>) (root, criteriaQuery, criteriaBuilder) -> {
             List<Predicate> predicates = new LinkedList<>();
 
-            if(!StringUtils.isEmpty(year)) {
-                predicates.add(criteriaBuilder.equal(root.get("year"),year));
+            if (!StringUtils.isEmpty(year)) {
+                predicates.add(criteriaBuilder.equal(root.get("year"), year));
             }
-            if(!StringUtils.isEmpty(village)) {
-                predicates.add(criteriaBuilder.equal(root.get("village"),village));
+            if (!StringUtils.isEmpty(village)) {
+                predicates.add(criteriaBuilder.equal(root.get("village"), village));
             }
-            if(!StringUtils.isEmpty(townId)) {
-                predicates.add(criteriaBuilder.equal(root.get("townId"),townId));
+            if (!StringUtils.isEmpty(townId)) {
+                predicates.add(criteriaBuilder.equal(root.get("townId"), townId));
             }
             Predicate[] array = new Predicate[predicates.size()];
             return criteriaBuilder.and(predicates.toArray(array));
-        },pageable);
+        }, pageable);
     }
 
     public Result save(DataHolderInformation dataHolderInformation) {
-        try{
+        try {
             dataHolderInformationRepository.save(dataHolderInformation);
             return ResultFactory.buildSuccessResult("保存成功");
-        }catch (Exception e) {
+        } catch (Exception e) {
             return ResultFactory.buildFailResult("保存失败");
         }
 
     }
 
     public Result delete(String id) {
-        try{
+        try {
             dataHolderInformationRepository.deleteById(id);
             return ResultFactory.buildSuccessResult("保存成功");
-        }catch (Exception e) {
+        } catch (Exception e) {
             return ResultFactory.buildFailResult("保存失败");
         }
     }
 
     public void transferAndSave(List<Object> modelList, String year, String townId) {
         List<DataHolderInformation> list = new ArrayList<>();
-        for(Object obj : modelList){
+        for (Object obj : modelList) {
             DataHolderInformation dataHolderInformation = new DataHolderInformation();
             DataHolderInformationModel model = (DataHolderInformationModel) obj;
             dataHolderInformation.setId(model.getId());
@@ -73,9 +74,9 @@ public class DataHolderInformationService {
             dataHolderInformation.setTown(model.getTown());
             dataHolderInformation.setVillage(model.getVillage());
             dataHolderInformation.setToalStock(model.getToalStock());
-            if (model.getStockType().equals(ShareEnum.City.getDesc())){
+            if (model.getStockType().equals(ShareEnum.City.getDesc())) {
                 dataHolderInformation.setStockType(ShareEnum.City.getIdnex());
-            }else {
+            } else {
                 dataHolderInformation.setStockType(ShareEnum.Vill.getIdnex());
             }
             dataHolderInformation.setJoinDate(model.getJoinDate());

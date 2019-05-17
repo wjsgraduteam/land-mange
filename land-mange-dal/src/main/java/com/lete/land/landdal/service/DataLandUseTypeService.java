@@ -28,66 +28,67 @@ public class DataLandUseTypeService {
     @Resource
     private DataLandUseRepository dataLandUseRepository;
 
-    public Page<DataLandUseType> getLandUseTypePage(String townId, String village,String year, Pageable pageable) {
+    public Page<DataLandUseType> getLandUseTypePage(String townId, String village, String year, Pageable pageable) {
         return dataLandUseRepository.findAll((Specification<DataLandUseType>) (root, criteriaQuery, criteriaBuilder) -> {
             List<Predicate> predicates = new LinkedList<>();
 
-            if(!StringUtils.isEmpty(year)) {
-                predicates.add(criteriaBuilder.equal(root.get("year"),year));
+            if (!StringUtils.isEmpty(year)) {
+                predicates.add(criteriaBuilder.equal(root.get("year"), year));
             }
-            if(!StringUtils.isEmpty(village)) {
-                predicates.add(criteriaBuilder.equal(root.get("village"),village));
+            if (!StringUtils.isEmpty(village)) {
+                predicates.add(criteriaBuilder.equal(root.get("village"), village));
             }
-            if(!StringUtils.isEmpty(townId)) {
-                predicates.add(criteriaBuilder.equal(root.get("townId"),townId));
+            if (!StringUtils.isEmpty(townId)) {
+                predicates.add(criteriaBuilder.equal(root.get("townId"), townId));
             }
             Predicate[] array = new Predicate[predicates.size()];
             return criteriaBuilder.and(predicates.toArray(array));
-        },pageable);
+        }, pageable);
     }
 
     public Result save(DataLandUseType dataLandUseType) {
-        try{
+        try {
             dataLandUseRepository.save(dataLandUseType);
             return ResultFactory.buildSuccessResult("保存成功");
-        }catch (Exception e) {
+        } catch (Exception e) {
             System.out.println(e);
             return ResultFactory.buildFailResult("保存失败");
         }
     }
+
     public Result delete(String id) {
-        try{
+        try {
             dataLandUseRepository.deleteById(id);
             return ResultFactory.buildSuccessResult("保存成功");
-        }catch (Exception e) {
+        } catch (Exception e) {
             return ResultFactory.buildFailResult("保存失败");
         }
     }
 
-    public  void transferAndSave(List<Object> modelList,String year,String townId){
+    public void transferAndSave(List<Object> modelList, String year, String townId) {
         List<DataLandUseType> list = new ArrayList<>();
 
-            for(Object obj : modelList){
-                DataLandUseType dataLandUseType = new DataLandUseType();
-                DataLandUseTypeModel model = (DataLandUseTypeModel)obj;
-                dataLandUseType.setId(model.getId());
-                dataLandUseType.setTownId(model.getTownId());
-                dataLandUseType.setVillage(model.getVillage());
-                dataLandUseType.setTown(model.getTown());
-                dataLandUseType.setTownId(townId);
-                dataLandUseType.setYear(model.getYear());
+        for (Object obj : modelList) {
+            DataLandUseType dataLandUseType = new DataLandUseType();
+            DataLandUseTypeModel model = (DataLandUseTypeModel) obj;
+            dataLandUseType.setId(model.getId());
+            dataLandUseType.setTownId(model.getTownId());
+            dataLandUseType.setVillage(model.getVillage());
+            dataLandUseType.setTown(model.getTown());
+            dataLandUseType.setTownId(townId);
+            dataLandUseType.setYear(model.getYear());
 
-                dataLandUseType.setAqArea(model.getAqArea());
-                dataLandUseType.setFaArea(model.getFaArea());
-                dataLandUseType.setGsArea(model.getGsArea());
-                dataLandUseType.setHsfArea(model.getHsfArea());
-                dataLandUseType.setYearendCulArea(model.getYearendCulArea());
-                dataLandUseType.setConLandArea(model.getConstructionLandArea());
-                dataLandUseType.setVpArea(model.getVpArea());
-                dataLandUseType.setHomeSteadArea(model.getHomesteadArea());
+            dataLandUseType.setAqArea(model.getAqArea());
+            dataLandUseType.setFaArea(model.getFaArea());
+            dataLandUseType.setGsArea(model.getGsArea());
+            dataLandUseType.setHsfArea(model.getHsfArea());
+            dataLandUseType.setYearendCulArea(model.getYearendCulArea());
+            dataLandUseType.setConLandArea(model.getConstructionLandArea());
+            dataLandUseType.setVpArea(model.getVpArea());
+            dataLandUseType.setHomeSteadArea(model.getHomesteadArea());
 
-                list.add(dataLandUseType);
-            }
+            list.add(dataLandUseType);
+        }
         dataLandUseRepository.saveAll(list);
     }
 
@@ -96,8 +97,8 @@ public class DataLandUseTypeService {
         // 查询
         List<DataLandUseType> dataLandUseTypeList = dataLandUseRepository.findAll((Specification<DataLandUseType>) (root, criteriaQuery, criteriaBuilder) -> {
             List<Predicate> predicates = new LinkedList<>();
-            if(!StringUtils.isEmpty(townId)) {
-                predicates.add(criteriaBuilder.equal(root.get("townId"),year));
+            if (!StringUtils.isEmpty(townId)) {
+                predicates.add(criteriaBuilder.equal(root.get("townId"), year));
             }
             Predicate[] array = new Predicate[predicates.size()];
 
@@ -110,7 +111,7 @@ public class DataLandUseTypeService {
             excelAnalysisVo.setYear(yearVo);
             final Computer computer = new Computer();
             dataLandUseTypeList.forEach(dataLandUseType -> {
-                if(yearVo.equals(dataLandUseType.getYear())) {
+                if (yearVo.equals(dataLandUseType.getYear())) {
                     double sumData = computer.getSumData();
                     sumData += dataLandUseType.getYearendCulArea();
                     computer.setSumData(sumData);

@@ -138,7 +138,7 @@ public class DataTemplateService {
         generateTemplateDetail(townId, year); // 生成细节表 只生成一次
         Page<DataImportVo> page;
         if (year == null || year == "") {
-            page = dataTemplateDetailRepository.findTemplateDetailPageByTownId(townId, pageable);
+            page = dataTemplateDetailRepository.findTemplateDetailPageByTownId(townId,pageable);
         } else {
             page = dataTemplateDetailRepository.findTemplateDetailPageByTownId(townId, year, pageable);
         }
@@ -218,7 +218,7 @@ public class DataTemplateService {
             } else if (templateId.equals("10")) {
                 List<Object> data = readExcel(excel, new DataPopulationStatusModel());
                 dataPopulationStatusService.transferAndSave(data, year, townId);
-            } else  if (templateId.equals("11")){
+            } else if (templateId.equals("11")){
                 List<Object> data = readExcel(excel, new DataResidenceIncomeModel());
                 dataResidenceIncomeService.transferAndSave(data, year, townId);
             }

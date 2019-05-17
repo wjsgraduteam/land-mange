@@ -20,38 +20,39 @@ import java.util.List;
 public class DataIncomeAndDistributionInformationService {
     @Resource
     private DataIncomeAndDistributionInformationRepository dataIncomeAndDistributionInformationRepository;
+
     public Page<DataIncomeAndDistributionInformation> getDataIncomeAndDistributionInformationPage(String townId, String village, String year, Pageable pageable) {
-        return   dataIncomeAndDistributionInformationRepository.findAll((Specification<DataIncomeAndDistributionInformation>)(root, criteriaQuery, criteriaBuilder) -> {
+        return dataIncomeAndDistributionInformationRepository.findAll((Specification<DataIncomeAndDistributionInformation>) (root, criteriaQuery, criteriaBuilder) -> {
             List<Predicate> predicates = new LinkedList<>();
 
-            if(!StringUtils.isEmpty(year)) {
-                predicates.add(criteriaBuilder.equal(root.get("year"),year));
+            if (!StringUtils.isEmpty(year)) {
+                predicates.add(criteriaBuilder.equal(root.get("year"), year));
             }
-            if(!StringUtils.isEmpty(village)) {
-                predicates.add(criteriaBuilder.equal(root.get("village"),village));
+            if (!StringUtils.isEmpty(village)) {
+                predicates.add(criteriaBuilder.equal(root.get("village"), village));
             }
-            if(!StringUtils.isEmpty(townId)) {
-                predicates.add(criteriaBuilder.equal(root.get("townId"),townId));
+            if (!StringUtils.isEmpty(townId)) {
+                predicates.add(criteriaBuilder.equal(root.get("townId"), townId));
             }
             Predicate[] array = new Predicate[predicates.size()];
             return criteriaBuilder.and(predicates.toArray(array));
-        },pageable);
+        }, pageable);
     }
 
     public Result save(DataIncomeAndDistributionInformation dataIncomeAndDistributionInformation) {
-        try{
+        try {
             dataIncomeAndDistributionInformationRepository.save(dataIncomeAndDistributionInformation);
             return ResultFactory.buildSuccessResult("保存成功");
-        }catch (Exception e) {
+        } catch (Exception e) {
             return ResultFactory.buildFailResult("保存失败");
         }
     }
 
     public Result delete(String id) {
-        try{
+        try {
             dataIncomeAndDistributionInformationRepository.deleteById(id);
             return ResultFactory.buildSuccessResult("保存成功");
-        }catch (Exception e) {
+        } catch (Exception e) {
             return ResultFactory.buildFailResult("保存失败");
         }
 
@@ -59,7 +60,7 @@ public class DataIncomeAndDistributionInformationService {
 
     public void transferAndSave(List<Object> modelList, String year, String townId) {
         List<DataIncomeAndDistributionInformation> list = new ArrayList<>();
-        for(Object obj : modelList){
+        for (Object obj : modelList) {
             DataIncomeAndDistributionInformation dataIncomeAndDistributionInformation = new DataIncomeAndDistributionInformation();
             DataIncomeAndDistributionInformationModel model = (DataIncomeAndDistributionInformationModel) obj;
             dataIncomeAndDistributionInformation.setId(model.getId());
@@ -78,8 +79,9 @@ public class DataIncomeAndDistributionInformationService {
             dataIncomeAndDistributionInformation.setCsTolNum(model.getCsTolNum());
             dataIncomeAndDistributionInformation.setCtup(model.getCtup());
             dataIncomeAndDistributionInformation.setYear(model.getYear());
+            list.add(dataIncomeAndDistributionInformation);
 
-        dataIncomeAndDistributionInformationRepository.saveAll(list);
         }
+        dataIncomeAndDistributionInformationRepository.saveAll(list);
     }
 }

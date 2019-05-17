@@ -53,7 +53,7 @@ public class DataTemplateEndpoint {
     public Page<DataImportVo> getTemplateImportPage(@RequestParam(name = "townId", required = false) String townId,
                                                     @RequestParam(name="year",required = false)String year,
                                                     @PageableDefault Pageable pageable) {
-        Page<DataImportVo> list = dataTemplateService.getTemplateDetailPage(townId,year, pageable);
+        Page<DataImportVo> list = dataTemplateService.getTemplateDetailPage(townId,year,pageable);
         return list;
     }
 

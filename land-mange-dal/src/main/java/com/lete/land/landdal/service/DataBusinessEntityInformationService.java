@@ -23,15 +23,17 @@ import java.util.UUID;
 public class DataBusinessEntityInformationService {
     @Resource
     private DataBusinessEntityInformationRepository dataBusinessEntityInformationRepository;
+
     @Transactional
     public void alterTemplate(String column, String comment) {
         dataBusinessEntityInformationRepository.alterTemplate("表头1");
     }
+
     public void transferAndSave(List<Object> modelList, String year, String townId) {
         List<DataBusinessEntityInformation> list = new ArrayList<>();
 
         try {
-            for(Object obj : modelList){
+            for (Object obj : modelList) {
                 DataBusinessEntityInformation dataBusinessEntityInformation = new DataBusinessEntityInformation();
                 DataBusinessEntityInformationModel model = (DataBusinessEntityInformationModel) obj;
                 String uuid = UUID.randomUUID().toString().replace("-", "");
@@ -43,12 +45,11 @@ public class DataBusinessEntityInformationService {
                 dataBusinessEntityInformation.setContractedArea(model.getContractedArea());
                 dataBusinessEntityInformation.setOperatorName(model.getOperatorName());
                 dataBusinessEntityInformation.setIdCard(model.getIdCard());
-
-                if(model.getOperatorType().equals(OperatorTypeEnum.Geti.getDesc())) {
+                if (model.getOperatorType().equals(OperatorTypeEnum.Geti.getDesc())) {
                     dataBusinessEntityInformation.setOperatorType(OperatorTypeEnum.Geti.getIdnex());
-                }else if (model.getOperatorType().equals(OperatorTypeEnum.CunJiTi.getDesc())){
+                } else if (model.getOperatorType().equals(OperatorTypeEnum.CunJiTi.getDesc())) {
                     dataBusinessEntityInformation.setOperatorType(OperatorTypeEnum.CunJiTi.getIdnex());
-                }else if (model.getOperatorType().equals(OperatorTypeEnum.ZuLin.getDesc())){
+                } else if (model.getOperatorType().equals(OperatorTypeEnum.ZuLin.getDesc())) {
                     dataBusinessEntityInformation.setOperatorType(OperatorTypeEnum.ZuLin.getIdnex());
                 }
                 dataBusinessEntityInformation.setStartDate(model.getStartDate());
@@ -56,7 +57,7 @@ public class DataBusinessEntityInformationService {
                 dataBusinessEntityInformation.setYear(model.getYear());
                 list.add(dataBusinessEntityInformation);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("日期类型转换错误");
         }
 
@@ -64,37 +65,37 @@ public class DataBusinessEntityInformationService {
     }
 
     public Page<DataBusinessEntityInformation> getDataBusinessEntityInformation(String townId, String village, String year, Pageable pageable) {
-        return dataBusinessEntityInformationRepository.findAll((Specification<DataBusinessEntityInformation>)(root, criteriaQuery, criteriaBuilder) -> {
+        return dataBusinessEntityInformationRepository.findAll((Specification<DataBusinessEntityInformation>) (root, criteriaQuery, criteriaBuilder) -> {
             List<Predicate> predicates = new LinkedList<>();
 
-            if(!StringUtils.isEmpty(year)) {
-                predicates.add(criteriaBuilder.equal(root.get("year"),year));
+            if (!StringUtils.isEmpty(year)) {
+                predicates.add(criteriaBuilder.equal(root.get("year"), year));
             }
-            if(!StringUtils.isEmpty(village)) {
-                predicates.add(criteriaBuilder.equal(root.get("village"),village));
+            if (!StringUtils.isEmpty(village)) {
+                predicates.add(criteriaBuilder.equal(root.get("village"), village));
             }
-            if(!StringUtils.isEmpty(townId)) {
-                predicates.add(criteriaBuilder.equal(root.get("townId"),townId));
+            if (!StringUtils.isEmpty(townId)) {
+                predicates.add(criteriaBuilder.equal(root.get("townId"), townId));
             }
             Predicate[] array = new Predicate[predicates.size()];
             return criteriaBuilder.and(predicates.toArray(array));
-        },pageable );
+        }, pageable);
     }
 
     public Result save(DataBusinessEntityInformation dataBusinessEntityInformation) {
-        try{
+        try {
             dataBusinessEntityInformationRepository.save(dataBusinessEntityInformation);
             return ResultFactory.buildSuccessResult("保存成功");
-        }catch (Exception e) {
+        } catch (Exception e) {
             return ResultFactory.buildFailResult("保存失败");
         }
     }
 
     public Result delete(String id) {
-        try{
+        try {
             dataBusinessEntityInformationRepository.deleteById(id);
             return ResultFactory.buildSuccessResult("保存成功");
-        }catch (Exception e) {
+        } catch (Exception e) {
             return ResultFactory.buildFailResult("保存失败");
         }
     }

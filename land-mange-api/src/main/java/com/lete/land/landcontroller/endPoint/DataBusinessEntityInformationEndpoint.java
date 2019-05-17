@@ -7,10 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -31,7 +28,7 @@ public class DataBusinessEntityInformationEndpoint {
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
-    public Result saveBusinessEntityInformation(DataBusinessEntityInformation dataBusinessEntityInformation) {
+    public Result saveBusinessEntityInformation(@RequestBody DataBusinessEntityInformation dataBusinessEntityInformation) {
         return dataBusinessEntityInformationService.save(dataBusinessEntityInformation);
     }
 

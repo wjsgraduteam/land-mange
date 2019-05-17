@@ -73,8 +73,8 @@ public class DataResidenceIncomeService {
             dataResidenceIncome.setCanUseIncome(model.getCanUseIncome());
             dataResidenceIncome.setDividend(model.getDividend());
             dataResidenceIncome.setYear(model.getYear());
-
-            dataResidenceIncomeRepository.saveAll(list);
+            list.add(dataResidenceIncome);
         }
+        dataResidenceIncomeRepository.saveAll(list);
     }
 }

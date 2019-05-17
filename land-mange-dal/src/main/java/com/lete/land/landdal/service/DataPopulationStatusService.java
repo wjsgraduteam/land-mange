@@ -81,8 +81,8 @@ public class DataPopulationStatusService {
             dataPopulationStatus.setScaleGrowers(model.getScaleGrowers());
             dataPopulationStatus.setDividend(model.getDividend());
             dataPopulationStatus.setYear(model.getYear());
-
-            dataPopulationStatusRepository.saveAll(list);
+            list.add(dataPopulationStatus);
         }
+        dataPopulationStatusRepository.saveAll(list);
     }
 }

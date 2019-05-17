@@ -11,6 +11,7 @@ public class DataTemplateDeatil {
 
     @Id
     @GeneratedValue(generator = "jpa-uuid")
+    @Column(name = "id")
     private String id;
     @Column(name = "town_id")
     private String townId;

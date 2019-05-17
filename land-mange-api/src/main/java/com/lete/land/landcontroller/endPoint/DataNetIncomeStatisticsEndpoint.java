@@ -18,7 +18,7 @@ public class DataNetIncomeStatisticsEndpoint {
     private DataNetIncomeStatisticsService dataNetIncomeStatisticsService;
     @RequestMapping(value = "/page", method = RequestMethod.GET)
     @ResponseBody
-    public Page<DataNetIncomeStatistics> getDataNetIncomeStatisticsPage(
+    public Page<DataNetIncomeStatistics> getNetIncomeStatisticsPage(
             @RequestParam(value = "townId",required = false)String townId,
             @RequestParam(value = "village",required = false)String village,
             @RequestParam(value = "year",required = false)String year,
@@ -28,13 +28,13 @@ public class DataNetIncomeStatisticsEndpoint {
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
-    public Result save(@RequestBody DataNetIncomeStatistics dataNetIncomeStatistics) {
+    public Result saveNetIncomeStatistics(@RequestBody DataNetIncomeStatistics dataNetIncomeStatistics) {
         return dataNetIncomeStatisticsService.save(dataNetIncomeStatistics);
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @ResponseBody
-    public Result delete(@RequestParam(value = "id") String id) {
+    public Result deleteNetIncomeStatistics(@RequestParam(value = "id") String id) {
         return dataNetIncomeStatisticsService.delete(id);
     }
 }

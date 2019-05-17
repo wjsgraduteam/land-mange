@@ -75,8 +75,9 @@ public class DataLandTransferService {
             dataLandTransfer.setLatlh(model.getLatlh());
             dataLandTransfer.setLatoe(model.getLatoe());
             dataLandTransfer.setYear(model.getYear());
+            list.add(dataLandTransfer);
 
-            dataLandTransferRepository.saveAll(list);
         }
+        dataLandTransferRepository.saveAll(list);
     }
 }
