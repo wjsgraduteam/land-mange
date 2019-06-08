@@ -1,18 +1,19 @@
 package com.lete.land.landdal.entity;
 
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
 @Table(name = "d_shareholder_information")
+@GenericGenerator(name = "jpa-uuid", strategy = "uuid")
 public class DataHolderInformation {
     @Id
     @Column(name = "id")
+    @GeneratedValue(generator = "jpa-uuid")
     private String id;
     @Column(name = "town_id")
     private String townId;
@@ -31,12 +32,12 @@ public class DataHolderInformation {
     @Column(name = "village")
     private String village;
     @Column(name = "toal_stock")
-    private String toalStock;
+    private Integer toalStock;
     @Column(name = "stock_type")
     private Integer stockType;
     @Column(name = "join_date")
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date join_date;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate joinDate;
     @Column(name = "year")
     private String year;
 
@@ -120,13 +121,7 @@ public class DataHolderInformation {
         this.village = village;
     }
 
-    public String getToalStock() {
-        return toalStock;
-    }
 
-    public void setToalStock(String toalStock) {
-        this.toalStock = toalStock;
-    }
 
     public Integer getStockType() {
         return stockType;
@@ -136,11 +131,19 @@ public class DataHolderInformation {
         this.stockType = stockType;
     }
 
-    public Date getJoin_date() {
-        return join_date;
+    public Integer getToalStock() {
+        return toalStock;
     }
 
-    public void setJoin_date(Date join_date) {
-        this.join_date = join_date;
+    public void setToalStock(Integer toalStock) {
+        this.toalStock = toalStock;
+    }
+
+    public LocalDate getJoinDate() {
+        return joinDate;
+    }
+
+    public void setJoinDate(LocalDate joinDate) {
+        this.joinDate = joinDate;
     }
 }

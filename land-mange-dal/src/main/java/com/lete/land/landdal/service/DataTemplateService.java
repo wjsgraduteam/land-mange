@@ -180,6 +180,8 @@ public class DataTemplateService {
     public Result importExcel(MultipartFile excel, String templateId, String year, String townId) {
         try {
             if (templateId.equals("1")) { //
+//                List<Object> data = readExcel(excel, new DataBusinessEntityInformationModel());
+//                dataBusinessEntityInformationService.transferAndSave(data, year, townId);
                 List<Object> data = readExcel(excel, new DataRegPopulationModel());
                 dataRegPopulationService.transferAndSave(data, year, townId);
             } else if (templateId.equals("2")) {
@@ -199,7 +201,7 @@ public class DataTemplateService {
                 dataHolderInformationService.transferAndSave(data, year, townId);
             } else if (templateId.equals("7")) {
                 List<Object> data = readExcel(excel, new DataIncomeAndDistributionInformationModel());
-                dataIncomeAndDistributionInformationService.transferAndSave(data, year, townId);
+               // dataIncomeAndDistributionInformationService.transferAndSave(data, year, townId);
             } else if (templateId.equals("8")) {
                 List<Object> data = readExcel(excel, new DataIncomeAndDistributionInformationModel());
                 dataLandTransferService.transferAndSave(data, year, townId);

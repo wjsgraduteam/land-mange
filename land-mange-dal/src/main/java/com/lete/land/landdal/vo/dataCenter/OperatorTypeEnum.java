@@ -1,7 +1,7 @@
 package com.lete.land.landdal.vo.dataCenter;
 
 public enum  OperatorTypeEnum {
-    Geti("个体经营",0),CunJiTi("村集体经营",1),ZuLin("租赁经营",2);
+    Geti("个体经营",0),CunJiTi("村集体经营",1),ZuLin("租凭经营",2);
     private String desc;
 
     private Integer idnex;

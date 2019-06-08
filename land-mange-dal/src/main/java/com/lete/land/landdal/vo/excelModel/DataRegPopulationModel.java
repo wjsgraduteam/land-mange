@@ -10,25 +10,28 @@ public class DataRegPopulationModel extends BaseRowModel {
     @ExcelProperty(value = "序号",index = 0)
     private Integer id;
 
-    @ExcelProperty(value = "身份证号码",index = 1)
+    @ExcelProperty(value = "姓名",index = 1)
+    private String name;
+
+    @ExcelProperty(value = "身份证号码",index = 2)
     private String idCard;
 
-    @ExcelProperty(value = "性别",index = 2)
+    @ExcelProperty(value = "性别",index = 3)
     private String sex;
 
-    @ExcelProperty(value = "出生日期",index = 3)
+    @ExcelProperty(value = "出生日期",index = 4)
     private String bornDate;
 
-    @ExcelProperty(value = "地籍编号",index = 4)
+    @ExcelProperty(value = "地籍编号",index = 5)
     private String cadastralNum;
 
-    @ExcelProperty(value = "所在镇",index = 5)
+    @ExcelProperty(value = "所在镇",index = 6)
     private String town;
 
-    @ExcelProperty(value = "所在村",index = 6)
+    @ExcelProperty(value = "所在村",index = 7)
     private String village;
 
-    @ExcelProperty(value = "社保类型",index = 7)
+    @ExcelProperty(value = "社保类型",index = 8)
     private String socialSecurityType;
 
     public Integer getId() {
@@ -37,6 +40,14 @@ public class DataRegPopulationModel extends BaseRowModel {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getIdCard() {

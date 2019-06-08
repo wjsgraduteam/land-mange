@@ -29,7 +29,7 @@ public class DataHolderInformationModel extends BaseRowModel {
     @ExcelProperty(value = "股份类型",index = 10)
     private Integer stockType;
     @ExcelProperty(value = "入股时间",index = 11)
-    private Date join_date;
+    private String joinDate;
     @ExcelProperty(value = "统计年份",index = 12)
     private String year;
 
@@ -121,12 +121,12 @@ public class DataHolderInformationModel extends BaseRowModel {
         this.stockType = stockType;
     }
 
-    public Date getJoin_date() {
-        return join_date;
+    public String getJoinDate() {
+        return joinDate;
     }
 
-    public void setJoin_date(Date join_date) {
-        this.join_date = join_date;
+    public void setJoinDate(String joinDate) {
+        this.joinDate = joinDate;
     }
 
     public String getYear() {

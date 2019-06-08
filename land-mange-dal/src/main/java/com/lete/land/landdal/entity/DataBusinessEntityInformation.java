@@ -1,20 +1,21 @@
 package com.lete.land.landdal.entity;
 
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "d_business_entity_information")
+@GenericGenerator(name = "jpa-uuid", strategy = "uuid")
 public class DataBusinessEntityInformation {
     @Id
     @Column(name = "id")
+    @GeneratedValue(generator = "jpa-uuid")
     private String id;
     @Column(name = "town_id")
-    private String townId;
+    private Integer townId;
     @Column(name = "plot_number")
     private String plotNumber;
     @Column(name = "town")
@@ -22,7 +23,7 @@ public class DataBusinessEntityInformation {
     @Column(name = "village")
     private String village;
     @Column(name = "contracted_area")
-    private Integer contractedArea;
+    private Double contractedArea;
     @Column(name = "operator_name")
     private String operatorName;
     @Column(name = "id_card")
@@ -37,11 +38,12 @@ public class DataBusinessEntityInformation {
     @Column(name = "year")
     private String year;
 
-    public String getTownId() {
+
+    public Integer getTownId() {
         return townId;
     }
 
-    public void setTownId(String townId) {
+    public void setTownId(Integer townId) {
         this.townId = townId;
     }
 
@@ -77,11 +79,11 @@ public class DataBusinessEntityInformation {
         this.village = village;
     }
 
-    public Integer getContractedArea() {
+    public Double getContractedArea() {
         return contractedArea;
     }
 
-    public void setContractedArea(Integer contractedArea) {
+    public void setContractedArea(Double contractedArea) {
         this.contractedArea = contractedArea;
     }
 
@@ -132,4 +134,6 @@ public class DataBusinessEntityInformation {
     public void setYear(String year) {
         this.year = year;
     }
+
+
 }

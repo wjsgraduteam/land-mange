@@ -1,6 +1,7 @@
 package com.lete.land.landdal.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -9,10 +10,12 @@ import java.util.List;
 
 @Entity
 @Table(name = "d_template")
+@GenericGenerator(name = "jpa-uuid", strategy = "uuid")
 public class DataTemplate {
 
     @Id
     @Column(name = "id")
+    @GeneratedValue(generator = "jpa-uuid")
     private String id;
 
     @Column(name = "template_name")
@@ -28,7 +31,7 @@ public class DataTemplate {
     private String reportingPeriod;
 
     @Column(name = "id_deleted")
-    private long idDeleted;
+    private Integer idDeleted;
 
     @Column(name = "created_by")
     private String createdBy;
@@ -82,15 +85,13 @@ public class DataTemplate {
         this.tableName = tableName;
     }
 
-
-    public long getIdDeleted() {
+    public Integer getIdDeleted() {
         return idDeleted;
     }
 
-    public void setIdDeleted(long idDeleted) {
+    public void setIdDeleted(Integer idDeleted) {
         this.idDeleted = idDeleted;
     }
-
 
     public String getCreatedBy() {
         return createdBy;

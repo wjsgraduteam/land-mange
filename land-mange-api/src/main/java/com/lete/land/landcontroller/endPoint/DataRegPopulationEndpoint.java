@@ -19,14 +19,15 @@ public class DataRegPopulationEndpoint {
     @Resource
     private DataRegPopulationService dataRegPopulationService;
 
-
     @RequestMapping(value = "/api/reg-population-page", method = RequestMethod.GET)
     @ResponseBody
     public Page<DataRegPopulation> getRegPopulationPage(
             @RequestParam(value = "townId",required = false)String townId,
             @RequestParam(value = "year",required = false)String year,
+            @RequestParam(value = "name",required = false)String name,
+            @RequestParam(value = "idCard",required = false)String idCard,
             @PageableDefault Pageable pageable) {
-        return dataRegPopulationService.getRegPopulationPage(townId,year,pageable);
+        return dataRegPopulationService.getRegPopulationPage(townId,year,name,idCard,pageable);
     }
 
     @RequestMapping(value = "/api/save-reg-population", method = RequestMethod.POST)

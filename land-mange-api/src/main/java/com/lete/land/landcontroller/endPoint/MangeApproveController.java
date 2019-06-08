@@ -7,6 +7,7 @@ import com.alibaba.excel.support.ExcelTypeEnum;
 import com.lete.land.landdal.entity.LandMangeApprove;
 import com.lete.land.landdal.service.DataRegPopulationService;
 import com.lete.land.landdal.service.LandMangeApproveService;
+import com.lete.land.landdal.vo.excelModel.DataRegPopulationModel;
 import com.lete.land.landdal.vo.excelModel.SysMuserModel;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -74,19 +75,18 @@ public class MangeApproveController {
         }
         ExcelWriter writer = new ExcelWriter(out, ExcelTypeEnum.XLSX, true);
         try {
-            String fileName = new String(("UserInfo " + new SimpleDateFormat("yyyy-MM-dd").format(new Date()))
-                    .getBytes(), "UTF-8");
-
+            String fileName = new String(("苏州市虎丘区人口信息表")
+                    .getBytes("UTF-8"), "ISO8859-1");
             Field field = SysMuserModel.class.getDeclaredField("name");
             ExcelProperty excelProperty = field.getAnnotation(ExcelProperty.class);
             InvocationHandler h = Proxy.getInvocationHandler(excelProperty);
             Field hfield = h.getClass().getDeclaredField("memberValues");
             hfield.setAccessible(true);
             Map memberValues = (Map)hfield.get(h);
-            memberValues.put("value",new String[]{"反射"});
+            // memberValues.put("value",new String[]{"反射"});
             hfield.setAccessible(false);
 
-            Sheet sheet1 = new Sheet(1, 0, SysMuserModel.class);
+            Sheet sheet1 = new Sheet(1, 0, DataRegPopulationModel.class);
             sheet1.setSheetName("用户表");
             response.setContentType("application/vnd.ms-excel");
             response.setCharacterEncoding("utf-8");

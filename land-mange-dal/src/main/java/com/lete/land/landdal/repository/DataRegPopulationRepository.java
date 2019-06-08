@@ -19,4 +19,6 @@ public interface DataRegPopulationRepository extends JpaRepository<DataRegPopula
 
     @Query(value = "select u.idCard as idCard,u.sex as sex from DataRegPopulation u")
     List<TemplateVo> findTemplateVo();
+
+    DataRegPopulation findByNameAndIdCard(String householderName, String idCard);
 }

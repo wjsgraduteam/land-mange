@@ -18,13 +18,13 @@ public class DataResidenceIncome {
     @Column(name = "year")
     private String year;
     @Column(name = "village_collective_income")
-    private Integer villageCollectiveIncome;
+    private Double villageCollectiveIncome;
     @Column(name = "toal_income")
-    private Integer toalIncome;
+    private Double toalIncome;
     @Column(name = "can_use_income")
-    private Integer canUseIncome;
+    private Double canUseIncome;
     @Column(name = "dividend")
-    private Integer dividend;
+    private Double dividend;
 
     public String getId() {
         return id;
@@ -58,35 +58,35 @@ public class DataResidenceIncome {
         this.year = year;
     }
 
-    public Integer getVillageCollectiveIncome() {
+    public Double getVillageCollectiveIncome() {
         return villageCollectiveIncome;
     }
 
-    public void setVillageCollectiveIncome(Integer villageCollectiveIncome) {
+    public void setVillageCollectiveIncome(Double villageCollectiveIncome) {
         this.villageCollectiveIncome = villageCollectiveIncome;
     }
 
-    public Integer getToalIncome() {
+    public Double getToalIncome() {
         return toalIncome;
     }
 
-    public void setToalIncome(Integer toalIncome) {
+    public void setToalIncome(Double toalIncome) {
         this.toalIncome = toalIncome;
     }
 
-    public Integer getCanUseIncome() {
+    public Double getCanUseIncome() {
         return canUseIncome;
     }
 
-    public void setCanUseIncome(Integer canUseIncome) {
+    public void setCanUseIncome(Double canUseIncome) {
         this.canUseIncome = canUseIncome;
     }
 
-    public Integer getDividend() {
+    public Double getDividend() {
         return dividend;
     }
 
-    public void setDividend(Integer dividend) {
+    public void setDividend(Double dividend) {
         this.dividend = dividend;
     }
 }

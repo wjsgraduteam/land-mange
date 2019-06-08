@@ -1,20 +1,16 @@
 package com.lete.land.landcontroller.endPoint;
 
-import com.alibaba.fastjson.JSONObject;
 import com.lete.land.landdal.MyResult;
 import com.lete.land.landdal.Result;
 import com.lete.land.landdal.entity.User;
 import com.lete.land.landdal.service.LoginService;
 import com.lete.land.landdal.service.ResultFactory;
 import com.lete.land.landdal.vo.LoginInfo;
-import com.lete.land.landdal.vo.UserVo;
-import com.lete.land.landsecurity.config.MyShiroRealm;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,10 +19,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 /**
  * Created by Administrator on 2017/12/11.

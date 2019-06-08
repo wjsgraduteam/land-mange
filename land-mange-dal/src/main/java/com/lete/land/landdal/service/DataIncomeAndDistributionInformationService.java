@@ -28,10 +28,10 @@ public class DataIncomeAndDistributionInformationService {
                 predicates.add(criteriaBuilder.equal(root.get("year"),year));
             }
             if(!StringUtils.isEmpty(village)) {
-                predicates.add(criteriaBuilder.equal(root.get("village"),year));
+                predicates.add(criteriaBuilder.equal(root.get("village"),village));
             }
             if(!StringUtils.isEmpty(townId)) {
-                predicates.add(criteriaBuilder.equal(root.get("townId"),year));
+                predicates.add(criteriaBuilder.equal(root.get("townId"),townId));
             }
             Predicate[] array = new Predicate[predicates.size()];
             return criteriaBuilder.and(predicates.toArray(array));
@@ -57,29 +57,29 @@ public class DataIncomeAndDistributionInformationService {
 
     }
 
-    public void transferAndSave(List<Object> modelList, String year, String townId) {
-        List<DataIncomeAndDistributionInformation> list = new ArrayList<>();
-        for(Object obj : modelList){
-            DataIncomeAndDistributionInformation dataIncomeAndDistributionInformation = new DataIncomeAndDistributionInformation();
-            DataIncomeAndDistributionInformationModel model = (DataIncomeAndDistributionInformationModel) obj;
-            dataIncomeAndDistributionInformation.setId(model.getId());
-            dataIncomeAndDistributionInformation.setTownId(model.getTownId());
-            dataIncomeAndDistributionInformation.setNumber(model.getNumber());
-            dataIncomeAndDistributionInformation.setTown(model.getTown());
-            dataIncomeAndDistributionInformation.setVillage(model.getVillage());
-            dataIncomeAndDistributionInformation.setTotalNetIncome(model.getTotalNetIncome());
-            dataIncomeAndDistributionInformation.setLmAndReIncome(model.getLmAndReIncome());
-            dataIncomeAndDistributionInformation.setVca(model.getVca());
-            dataIncomeAndDistributionInformation.setShareholderAllocation(model.getShareholderAllocation());
-            dataIncomeAndDistributionInformation.setCurrentRetention(model.getCurrentRetention());
-            dataIncomeAndDistributionInformation.setLta(model.getLta());
-            dataIncomeAndDistributionInformation.setRsTolNum(model.getRsTolNum());
-            dataIncomeAndDistributionInformation.setRuralUnitPrice(model.getRuralUnitPrice());
-            dataIncomeAndDistributionInformation.setCsTolNum(model.getCsTolNum());
-            dataIncomeAndDistributionInformation.setCtup(model.getCtup());
-            dataIncomeAndDistributionInformation.setYear(model.getYear());
-
-        dataIncomeAndDistributionInformationRepository.saveAll(list);
-        }
-    }
+//    public void transferAndSave(List<Object> modelList, String year, String townId) {
+//        List<DataIncomeAndDistributionInformation> list = new ArrayList<>();
+//        for(Object obj : modelList){
+//            DataIncomeAndDistributionInformation dataIncomeAndDistributionInformation = new DataIncomeAndDistributionInformation();
+//            DataIncomeAndDistributionInformationModel model = (DataIncomeAndDistributionInformationModel) obj;
+//            dataIncomeAndDistributionInformation.setId(model.getId());
+//            dataIncomeAndDistributionInformation.setTownId(model.getTownId());
+//            dataIncomeAndDistributionInformation.setNumber(model.getNumber());
+//            dataIncomeAndDistributionInformation.setTown(model.getTown());
+//            dataIncomeAndDistributionInformation.setVillage(model.getVillage());
+//            dataIncomeAndDistributionInformation.setTotalNetIncome(model.getTotalNetIncome());
+//            dataIncomeAndDistributionInformation.setLmAndReIncome(model.getLmAndReIncome());
+//            dataIncomeAndDistributionInformation.setVca(model.getVca());
+//            dataIncomeAndDistributionInformation.setShareholderAllocation(model.getShareholderAllocation());
+//            dataIncomeAndDistributionInformation.setCurrentRetention(model.getCurrentRetention());
+//            dataIncomeAndDistributionInformation.setLta(model.getLta());
+//            dataIncomeAndDistributionInformation.setRsTolNum(model.getRsTolNum());
+//            dataIncomeAndDistributionInformation.setRuralUnitPrice(model.getRuralUnitPrice());
+//            dataIncomeAndDistributionInformation.setCsTolNum(model.getCsTolNum());
+//            dataIncomeAndDistributionInformation.setCtup(model.getCtup());
+//            dataIncomeAndDistributionInformation.setYear(model.getYear());
+//
+//        dataIncomeAndDistributionInformationRepository.saveAll(list);
+//        }
+//    }
 }

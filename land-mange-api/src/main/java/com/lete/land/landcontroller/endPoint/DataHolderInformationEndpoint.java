@@ -13,18 +13,20 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 
 @Controller
-@RequestMapping(value = "api/holder-information")
+@RequestMapping(value = "/api/holder-information")
 public class DataHolderInformationEndpoint {
     @Resource
     private DataHolderInformationService dataHolderInformationService;
     @RequestMapping(value = "/page", method = RequestMethod.GET)
     @ResponseBody
     public Page<DataHolderInformation> getDataHolderInformationPage(
-            @RequestParam(value = "townId",required = false)String townId,
+            @RequestParam(value = "town",required = false)String townId,
             @RequestParam(value = "village",required = false)String village,
             @RequestParam(value = "year",required = false)String year,
+            @RequestParam(value = "stockType",required = false)Integer stockType,
+            @RequestParam(value = "shareholderName",required = false)String shareholderName,
             @PageableDefault Pageable pageable) {
-        return dataHolderInformationService.getDataHolderInformationPage(townId,village,year,pageable);
+        return dataHolderInformationService.getDataHolderInformationPage(townId,village,year,stockType,shareholderName,pageable);
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)

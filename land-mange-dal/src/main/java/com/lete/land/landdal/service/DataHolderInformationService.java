@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import javax.persistence.criteria.Predicate;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -21,8 +23,8 @@ import java.util.List;
 public class DataHolderInformationService {
     @Resource
     private DataHolderInformationRepository dataHolderInformationRepository;
-    public Page<DataHolderInformation> getDataHolderInformationPage(String townId, String village, String year, Pageable pageable) {
-        return   dataHolderInformationRepository.findAll((Specification<DataHolderInformation>)(root, criteriaQuery, criteriaBuilder) -> {
+    public Page<DataHolderInformation> getDataHolderInformationPage(String townId, String village, String year,Integer stockType,String shareholderName,Pageable pageable) {
+        Page<DataHolderInformation> data =  dataHolderInformationRepository.findAll((Specification<DataHolderInformation>)(root, criteriaQuery, criteriaBuilder) -> {
             List<Predicate> predicates = new LinkedList<>();
 
             if(!StringUtils.isEmpty(year)) {
@@ -34,9 +36,17 @@ public class DataHolderInformationService {
             if(!StringUtils.isEmpty(townId)) {
                 predicates.add(criteriaBuilder.equal(root.get("townId"),year));
             }
+            if(stockType != null) {
+                predicates.add(criteriaBuilder.equal(root.get("stockType"),stockType));
+            }
+            if(!StringUtils.isEmpty(shareholderName)) {
+                predicates.add(criteriaBuilder.equal(root.get("shareholderName"),shareholderName));
+            }
             Predicate[] array = new Predicate[predicates.size()];
             return criteriaBuilder.and(predicates.toArray(array));
         },pageable);
+
+        return data;
     }
 
     public Result save(DataHolderInformation dataHolderInformation) {
@@ -72,13 +82,13 @@ public class DataHolderInformationService {
             dataHolderInformation.setFamilyNum(model.getFamilyNum());
             dataHolderInformation.setTown(model.getTown());
             dataHolderInformation.setVillage(model.getVillage());
-            dataHolderInformation.setToalStock(model.getToalStock());
+            dataHolderInformation.setToalStock(Integer.valueOf(model.getToalStock()));
             if (model.getStockType().equals(ShareEnum.City.getDesc())){
                 dataHolderInformation.setStockType(ShareEnum.City.getIdnex());
             }else {
                 dataHolderInformation.setStockType(ShareEnum.Vill.getIdnex());
             }
-            dataHolderInformation.setJoin_date(model.getJoin_date());
+            dataHolderInformation.setJoinDate(LocalDate.parse(model.getJoinDate(), DateTimeFormatter.ofPattern("yyyy-mm-dd")));
             dataHolderInformation.setYear(model.getYear());
             list.add(dataHolderInformation);
         }

@@ -1,5 +1,8 @@
 package com.lete.land.landcontroller.endPoint;
 
+import com.alibaba.excel.ExcelWriter;
+import com.alibaba.excel.metadata.Sheet;
+import com.alibaba.excel.support.ExcelTypeEnum;
 import com.lete.land.landdal.Result;
 import com.lete.land.landdal.entity.DataTemplate;
 import com.lete.land.landdal.entity.DataTemplateDeatil;
@@ -14,6 +17,12 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -86,5 +95,38 @@ public class DataTemplateEndpoint {
     public List<DataTemplateVo> getJson() {
         return dataTemplateService.getTemplateJson();
     }
+
+//    @GetMapping("/getExcel")
+//    public void getExcel(HttpServletRequest request, HttpServletResponse response) {
+//        ServletOutputStream out = null;
+//
+//        try {
+//            out = response.getOutputStream();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        ExcelWriter writer = new ExcelWriter(out, ExcelTypeEnum.XLSX, true);
+//        try {
+//            String fileName = new String(("UserInfo " + new SimpleDateFormat("yyyy-MM-dd").format(new Date()))
+//                    .getBytes(), "UTF-8");
+//            Sheet sheet1 = new Sheet(1, 0, SysMuserModel.class);
+//            sheet1.setSheetName("用户表");
+//            response.setContentType("multipart/form-data");
+//            response.setCharacterEncoding("utf-8");
+//            response.setHeader("Content-disposition", "attachment;filename="+fileName+".xlsx");
+//            // writer.write(getListString(), sheet1);
+//
+//            out.flush();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }finally {
+//            writer.finish();
+//            try {
+//                out.close();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }
 
 }

@@ -7,26 +7,22 @@ public class DataBusinessEntityInformationModel extends BaseRowModel {
     @ExcelProperty(value = "序号",index = 0)
     private String id;
     @ExcelProperty(value = "镇编号",index = 1)
-    private String townId;
+    private Integer townId;
     @ExcelProperty(value = "地块编号",index = 2)
     private String plotNumber;
-    @ExcelProperty(value = "所在镇",index = 3)
-    private String town;
-    @ExcelProperty(value = "所在村",index = 4)
-    private String village;
-    @ExcelProperty(value = "承包地面积",index = 5)
-    private Integer contractedArea;
+    @ExcelProperty(value = "承包地面积",index = 4)
+    private Double contractedArea;
+    @ExcelProperty(value = "身份证号码或组织机构代码",index = 5)
+    private String idCard;
     @ExcelProperty(value = "经营者姓名或名称",index = 6)
     private String operatorName;
-    @ExcelProperty(value = "身份证号码或组织机构代码",index = 7)
-    private String idCard;
-    @ExcelProperty(value = "经营者类型",index = 8)
+    @ExcelProperty(value = "经营者类型",index = 7)
     private Integer operatorType;
-    @ExcelProperty(value = "起始日期",index = 9)
-    private String startDate;
-    @ExcelProperty(value = "经营期限",index = 10)
-    private String operatingPeriod;
-    @ExcelProperty(value = "统计年份",index = 11)
+    @ExcelProperty(value = "所在镇",index = 8)
+    private String town;
+    @ExcelProperty(value = "所在村",index = 9)
+    private String village;
+    @ExcelProperty(value = "统计年份",index = 10)
     private String year;
 
     public String getId() {
@@ -37,11 +33,11 @@ public class DataBusinessEntityInformationModel extends BaseRowModel {
         this.id = id;
     }
 
-    public String getTownId() {
+    public Integer getTownId() {
         return townId;
     }
 
-    public void setTownId(String townId) {
+    public void setTownId(Integer townId) {
         this.townId = townId;
     }
 
@@ -69,11 +65,11 @@ public class DataBusinessEntityInformationModel extends BaseRowModel {
         this.village = village;
     }
 
-    public Integer getContractedArea() {
+    public Double getContractedArea() {
         return contractedArea;
     }
 
-    public void setContractedArea(Integer contractedArea) {
+    public void setContractedArea(Double contractedArea) {
         this.contractedArea = contractedArea;
     }
 
@@ -101,21 +97,6 @@ public class DataBusinessEntityInformationModel extends BaseRowModel {
         this.operatorType = operatorType;
     }
 
-    public String getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
-    }
-
-    public String getOperatingPeriod() {
-        return operatingPeriod;
-    }
-
-    public void setOperatingPeriod(String operatingPeriod) {
-        this.operatingPeriod = operatingPeriod;
-    }
 
     public String getYear() {
         return year;

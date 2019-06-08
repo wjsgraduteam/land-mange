@@ -4,6 +4,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -22,8 +23,8 @@ public class DataRegPopulation {
     @Column(name = "sex")
     private String sex;
     @Column(name = "born_date")
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date bornDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate bornDate;
     @Column(name = "cadastral_num")
     private String cadastralNum;
     @Column(name = "town")
@@ -36,6 +37,26 @@ public class DataRegPopulation {
     private String year;
     @Column(name = "town_id")
     private String townId;
+    @Column(name = "relation_ship_id")
+    private String relationShipId;
+    @Column(name = "relation_ship_desc")
+    private String relationShipDesc;
+
+    public String getRelationShipId() {
+        return relationShipId;
+    }
+
+    public void setRelationShipId(String relationShipId) {
+        this.relationShipId = relationShipId;
+    }
+
+    public String getRelationShipDesc() {
+        return relationShipDesc;
+    }
+
+    public void setRelationShipDesc(String relationShipDesc) {
+        this.relationShipDesc = relationShipDesc;
+    }
 
     public String getId() {
         return id;
@@ -106,14 +127,6 @@ public class DataRegPopulation {
     }
 
 
-    public Date getBornDate() {
-        return bornDate;
-    }
-
-    public void setBornDate(Date bornDate) {
-        this.bornDate = bornDate;
-    }
-
     public Integer getSocialSecurityType() {
         return socialSecurityType;
     }
@@ -128,5 +141,13 @@ public class DataRegPopulation {
 
     public void setTownId(String townId) {
         this.townId = townId;
+    }
+
+    public LocalDate getBornDate() {
+        return bornDate;
+    }
+
+    public void setBornDate(LocalDate bornDate) {
+        this.bornDate = bornDate;
     }
 }

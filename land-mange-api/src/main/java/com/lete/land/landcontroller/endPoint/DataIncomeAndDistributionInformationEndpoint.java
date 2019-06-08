@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 
 @Controller
-@RequestMapping(value = "api/data-income-and-distribution-information")
+@RequestMapping(value = "api/income-distribution")
 public class DataIncomeAndDistributionInformationEndpoint {
     @Resource
     private DataIncomeAndDistributionInformationService dataIncomeAndDistributionInformationService;
