@@ -17,6 +17,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.persistence.Column;
 import javax.persistence.criteria.Predicate;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -41,7 +42,7 @@ public class LandIncomeService {
         return new PageImpl<FarmTypeVO>(getFarmTypeVOList(townId, village, year), pageable, 3);
     }
 
-    //按年份分析三种类型的总收入
+    //年度收益分析——按年份分析三种类型的总收入
     public List<YearAnalysisChartVO>   getYearAnalysisList(String townId, String village, String year) {
         List<DataNetIncomeStatistics> list = getDataNetIncomeStatisticsList(townId, village, year);
         List<YearAnalysisChartVO> yearChartList = new ArrayList<>();
@@ -87,7 +88,7 @@ public class LandIncomeService {
         return user.getOperatorType() +"#"+ user.getYear();
     }
 
-    //表格信息 计算农业用地使用情况
+    //农用地收益分析 计算农业用地使用情况
     public FarmChartVO getFarmTypeChartList(String townId, String village, String year) {
         List<FarmTypeVO> list = getFarmTypeVOList(townId, village, year);
 
@@ -224,9 +225,9 @@ public class LandIncomeService {
         }, pageable);
     }
 
-
+    // 增收效果分析
     public List<DataResidenceIncome> getResidenceChart(String townId, String village) {
-        return dataResidenceIncomeRepository.findAll((Specification<DataResidenceIncome>) (root, criteriaQuery, criteriaBuilder) -> {
+        List<DataResidenceIncome> data = dataResidenceIncomeRepository.findAll((Specification<DataResidenceIncome>) (root, criteriaQuery, criteriaBuilder) -> {
             List<Predicate> predicates = new LinkedList<>();
             if (StringUtils.isNotEmpty(townId)) {
                 predicates.add(criteriaBuilder.equal(root.get("townId"), townId));
@@ -239,5 +240,45 @@ public class LandIncomeService {
             Predicate[] array = new Predicate[predicates.size()];
             return criteriaBuilder.and(predicates.toArray(array));
         });
+
+        if(StringUtils.isEmpty(townId)) {
+          return   getTotalYearData(data);
+        }
+
+        return data;
+    }
+
+    private List<DataResidenceIncome> getTotalYearData(List<DataResidenceIncome> data) {
+        Map<String, List<DataResidenceIncome>> map = data.stream().collect(Collectors.groupingBy(DataResidenceIncome::getYear));
+        List<DataResidenceIncome> result = new ArrayList<>();
+        result.add(getYearData(map.get("2015"),"2015"));
+        result.add(getYearData(map.get("2016"),"2016"));
+        result.add(getYearData(map.get("2017"),"2017"));
+        result.add(getYearData(map.get("2018"),"2018"));
+        result.add(getYearData(map.get("2019"),"2019"));
+
+        return result;
+    }
+
+    public DataResidenceIncome getYearData(List<DataResidenceIncome> list,String year) {
+        DataResidenceIncome yearData = new DataResidenceIncome();
+        Double villageCollectiveIncome = 0D;
+        Double toalIncome= 0D;
+        Double canUseIncome= 0D;
+        Double dividend= 0D;
+        for(DataResidenceIncome dataResidenceIncome : list) {
+            villageCollectiveIncome += dataResidenceIncome.getVillageCollectiveIncome();
+            toalIncome += dataResidenceIncome.getToalIncome();
+            canUseIncome += dataResidenceIncome.getCanUseIncome();
+            dividend += dataResidenceIncome.getDividend();
+        }
+
+        yearData.setYear(year);
+        yearData.setCanUseIncome(canUseIncome);
+        yearData.setDividend(dividend);
+        yearData.setToalIncome(toalIncome);
+        yearData.setVillageCollectiveIncome(villageCollectiveIncome);
+
+        return yearData;
     }
 }

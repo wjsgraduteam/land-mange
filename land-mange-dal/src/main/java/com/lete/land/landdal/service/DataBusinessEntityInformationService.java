@@ -111,7 +111,7 @@ public class DataBusinessEntityInformationService {
             return ResultFactory.buildFailResult("保存失败");
         }
     }
-////
+//// 经营主体分析
     public Page<SummaryAnalysisVO> getSummaryAnalysis(Integer townId, String year, Pageable pageable) {
         Page<SummaryAnalysisVO> data = dataBusinessEntityInformationRepository.getVillagePageByTown(townId, year, pageable);//所有村
         data.getContent().forEach(summaryAnalysisVO -> {
@@ -139,6 +139,7 @@ public class DataBusinessEntityInformationService {
         return data;
     }
 
+    //经营主体分析表
     public List<BusinessAnalysisChartVO> getCharts(Integer townId, String village, String year) {
         List<DataBusinessEntityInformation> list = dataBusinessEntityInformationRepository.findAll((Specification<DataBusinessEntityInformation>) (root, criteriaQuery, criteriaBuilder) -> {
             List<Predicate> predicates = new LinkedList<>();

@@ -51,7 +51,7 @@ public class DataRegPopulationService {
                 String uuid = UUID.randomUUID().toString().replace("-", "");
                 dataRegPopulation.setId(uuid);
                 dataRegPopulation.setIdCard(model.getIdCard());
-                dataRegPopulation.setName(model.getName());// new SimpleDateFormat("yyyy-MM-dd").parse(model.getBornDate())
+                dataRegPopulation.setName("测试人吴杰");// new SimpleDateFormat("yyyy-MM-dd").parse(model.getBornDate())
                //  LocalDate da = new LocalDate(1,"01","08");
                // dataRegPopulation.setBornDate(LocalDate.parse(time, DateTimeFormatter.ofPattern("yyyy-mm-dd")));
                 dataRegPopulation.setBornDate(LocalDate.of(1998,10,1));

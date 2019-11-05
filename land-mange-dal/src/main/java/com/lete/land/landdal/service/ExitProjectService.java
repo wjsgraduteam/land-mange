@@ -23,6 +23,7 @@ import javax.annotation.Resource;
 import javax.persistence.criteria.Predicate;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 /**
@@ -75,13 +76,14 @@ public class ExitProjectService {
         // 业主社保变更表
         DataRegPopulation hourseReg = dataRegPopulationRepository.findByNameAndIdCard(exitApplyVo.getHouseholderName(), exitApplyVo.getIdCard()); // 这边查的结果可能不唯一
         ExitSocialTypeChange hourseHolder = mapperFacade.map(hourseReg, ExitSocialTypeChange.class);
-        hourseHolder.setId(null);
+        final String hourseId = UUID.randomUUID().toString().replace("-", "");
+        hourseHolder.setId(hourseId);
         hourseHolder.setRelation("户主");
         hourseHolder.setRegisterDate(exitApplyVo.getApplyDate()); // 注册日期
         hourseHolder.setChangeType(SocialSecurityEnum.City.getIdnex()); // 变更类型
         hourseHolder.setProId(proId);
         hourseHolder.setHourseHolderId("0");
-        final String hourseId = exitSocialTypeChangeRepository.save(hourseHolder).getId();
+        exitSocialTypeChangeRepository.save(hourseHolder);
         // 家庭成员信息变更表
         List<ExitSocialTypeChange> socialTypeChangeList = exitApplyVo.getFamilyMemberList().stream().map(member -> {
             DataRegPopulation dataRegPopulation = dataRegPopulationRepository.findById(member.getId()).get();

@@ -126,7 +126,7 @@ public class DataTemplateService {
 
     //获取模板表的分页数据-不同的镇只能看到自己的
     public Page<DataImportVo> getTemplateDetailPage(String townId, String year, Pageable pageable) {
-        generateTemplateDetail(townId, year); // 生成细节表 只生成一次
+         generateTemplateDetail(townId, year); // 生成细节表 只生成一次
         Page<DataImportVo> page;
         if (year == null || year == "") {
             page = dataTemplateDetailRepository.findTemplateDetailPageByTownId(townId, pageable);

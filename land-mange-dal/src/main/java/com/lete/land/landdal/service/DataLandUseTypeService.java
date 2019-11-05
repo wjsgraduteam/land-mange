@@ -98,7 +98,7 @@ public class DataLandUseTypeService {
         List<DataLandUseType> dataLandUseTypeList = dataLandUseRepository.findAll((Specification<DataLandUseType>) (root, criteriaQuery, criteriaBuilder) -> {
             List<Predicate> predicates = new LinkedList<>();
             if(!StringUtils.isEmpty(townId)) {
-                predicates.add(criteriaBuilder.equal(root.get("townId"),year));
+                predicates.add(criteriaBuilder.like(root.get("town"),townId));
             }
             Predicate[] array = new Predicate[predicates.size()];
 
@@ -106,20 +106,97 @@ public class DataLandUseTypeService {
         });
         List<String> years = Arrays.asList(Constants.yearArr);
 
-        years.forEach(yearVo -> {
-            ExcelAnalysisVo excelAnalysisVo = new ExcelAnalysisVo();
-            excelAnalysisVo.setYear(yearVo);
-            final Computer computer = new Computer();
-            dataLandUseTypeList.forEach(dataLandUseType -> {
-                if(yearVo.equals(dataLandUseType.getYear())) {
-                    double sumData = computer.getSumData();
-                    sumData += dataLandUseType.getYearendCulArea();
-                    computer.setSumData(sumData);
-                }
+        if(indicators.equals(1)) {
+            years.forEach(yearVo -> {
+                ExcelAnalysisVo excelAnalysisVo = new ExcelAnalysisVo();
+                excelAnalysisVo.setYear(yearVo);
+                final Computer computer = new Computer();
+                dataLandUseTypeList.forEach(dataLandUseType -> {
+                    if(yearVo.equals(dataLandUseType.getYear())) {
+                        double sumData = computer.getSumData();
+                        sumData += dataLandUseType.getHsfArea();
+                        computer.setSumData(sumData);
+                    }
+                });
+                excelAnalysisVo.setYearendCulArea(computer.getSumData());
+                excelAnalysisVoList.add(excelAnalysisVo);
             });
-            excelAnalysisVo.setYearendCulArea(computer.getSumData());
-            excelAnalysisVoList.add(excelAnalysisVo);
-        });
+        } else if(indicators.equals(2)) {
+            years.forEach(yearVo -> {
+                ExcelAnalysisVo excelAnalysisVo = new ExcelAnalysisVo();
+                excelAnalysisVo.setYear(yearVo);
+                final Computer computer = new Computer();
+                dataLandUseTypeList.forEach(dataLandUseType -> {
+                    if(yearVo.equals(dataLandUseType.getYear())) {
+                        double sumData = computer.getSumData();
+                        sumData += dataLandUseType.getFaArea();
+                        computer.setSumData(sumData);
+                    }
+                });
+                excelAnalysisVo.setYearendCulArea(computer.getSumData());
+                excelAnalysisVoList.add(excelAnalysisVo);
+            });
+        } else if(indicators.equals(3)) {
+            years.forEach(yearVo -> {
+                ExcelAnalysisVo excelAnalysisVo = new ExcelAnalysisVo();
+                excelAnalysisVo.setYear(yearVo);
+                final Computer computer = new Computer();
+                dataLandUseTypeList.forEach(dataLandUseType -> {
+                    if(yearVo.equals(dataLandUseType.getYear())) {
+                        double sumData = computer.getSumData();
+                        sumData += dataLandUseType.getGsArea();
+                        computer.setSumData(sumData);
+                    }
+                });
+                excelAnalysisVo.setYearendCulArea(computer.getSumData());
+                excelAnalysisVoList.add(excelAnalysisVo);
+            });
+        } else if(indicators.equals(4)) {
+            years.forEach(yearVo -> {
+                ExcelAnalysisVo excelAnalysisVo = new ExcelAnalysisVo();
+                excelAnalysisVo.setYear(yearVo);
+                final Computer computer = new Computer();
+                dataLandUseTypeList.forEach(dataLandUseType -> {
+                    if(yearVo.equals(dataLandUseType.getYear())) {
+                        double sumData = computer.getSumData();
+                        sumData += dataLandUseType.getVpArea();
+                        computer.setSumData(sumData);
+                    }
+                });
+                excelAnalysisVo.setYearendCulArea(computer.getSumData());
+                excelAnalysisVoList.add(excelAnalysisVo);
+            });
+        } else if(indicators.equals(3)) {
+            years.forEach(yearVo -> {
+                ExcelAnalysisVo excelAnalysisVo = new ExcelAnalysisVo();
+                excelAnalysisVo.setYear(yearVo);
+                final Computer computer = new Computer();
+                dataLandUseTypeList.forEach(dataLandUseType -> {
+                    if(yearVo.equals(dataLandUseType.getYear())) {
+                        double sumData = computer.getSumData();
+                        sumData += dataLandUseType.getHomeSteadArea();
+                        computer.setSumData(sumData);
+                    }
+                });
+                excelAnalysisVo.setYearendCulArea(computer.getSumData());
+                excelAnalysisVoList.add(excelAnalysisVo);
+            });
+        } else {
+            years.forEach(yearVo -> {
+                ExcelAnalysisVo excelAnalysisVo = new ExcelAnalysisVo();
+                excelAnalysisVo.setYear(yearVo);
+                final Computer computer = new Computer();
+                dataLandUseTypeList.forEach(dataLandUseType -> {
+                    if(yearVo.equals(dataLandUseType.getYear())) {
+                        double sumData = computer.getSumData();
+                        sumData += dataLandUseType.getYearendCulArea();
+                        computer.setSumData(sumData);
+                    }
+                });
+                excelAnalysisVo.setYearendCulArea(computer.getSumData());
+                excelAnalysisVoList.add(excelAnalysisVo);
+            });
+        }
 
         return excelAnalysisVoList;
     }

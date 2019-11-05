@@ -11,6 +11,8 @@ public class DataResidenceIncome {
     @Id
     @Column(name = "id")
     private String id;
+    @Column(name = "townId")
+    private String townId;
     @Column(name = "village")
     private String village;
     @Column(name = "town")
@@ -32,6 +34,14 @@ public class DataResidenceIncome {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getTownId() {
+        return townId;
+    }
+
+    public void setTownId(String townId) {
+        this.townId = townId;
     }
 
     public String getVillage() {
